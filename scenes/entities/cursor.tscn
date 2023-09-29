@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://lxoiljnwu1ym"]
+
+[ext_resource type="Script" path="res://scripts/cursor/cursor_controller.gd" id="1_x7w7u"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://dhoufotrh7ijg" path="res://assets/spine/cursor/cursor_dataresource.tres" id="2_k44yk"]
+[ext_resource type="Material" uid="uid://dvxgkgaofflnj" path="res://assets/spine/spine_regular.tres" id="3_fl4ty"]
+[ext_resource type="Texture2D" uid="uid://ufwly0ajs8yo" path="res://assets/textures/cross.png" id="5_vfr7l"]
+[ext_resource type="Script" path="res://scripts/cursor/momentum_controller.gd" id="6_0w3to"]
+[ext_resource type="AudioStream" uid="uid://kh5wvx1j5dw2" path="res://assets/audio/cursor/click-on.wav" id="7_2vyf6"]
+[ext_resource type="Script" path="res://scripts/cursor/cursor_input_controller.gd" id="7_3ajbw"]
+[ext_resource type="AudioStream" uid="uid://dsunf34fht4yq" path="res://assets/audio/cursor/click-off.wav" id="8_k37jc"]
+[ext_resource type="Script" path="res://scripts/cursor/pointer_controller.gd" id="11_pesg3"]
+
+[node name="CursorRoot" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="PlayerCursor" type="Node2D" parent="."]
+script = ExtResource("1_x7w7u")
+
+[node name="SpineSprite" type="SpineSprite" parent="PlayerCursor"]
+position = Vector2(0, 27)
+skeleton_data_res = ExtResource("2_k44yk")
+normal_material = ExtResource("3_fl4ty")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+
+[node name="ikTarget" type="SpineBoneNode" parent="PlayerCursor/SpineSprite"]
+show_behind_parent = true
+position = Vector2(0, 449)
+bone_name = "momentumIk"
+bone_mode = 1
+
+[node name="MomentumIK" type="Sprite2D" parent="."]
+position = Vector2(59, 251)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_vfr7l")
+offset = Vector2(-118, 116)
+script = ExtResource("6_0w3to")
+acceleration = 0.15
+decelerationDistance = 80.0
+
+[node name="PlayerInputController" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_3ajbw")
+
+[node name="ClickOn" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_2vyf6")
+
+[node name="ClickOff" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_k37jc")
+
+[node name="PointerController" type="Node" parent="."]
+script = ExtResource("11_pesg3")

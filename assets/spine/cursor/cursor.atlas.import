@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://dp5xu02hf44if"
+path="res://.godot/imported/cursor.atlas-8f87a8c99b8675ab4386b1c71cc46fbe.spatlas"
+
+[deps]
+
+source_file="res://assets/spine/cursor/cursor.atlas"
+dest_files=["res://.godot/imported/cursor.atlas-8f87a8c99b8675ab4386b1c71cc46fbe.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
