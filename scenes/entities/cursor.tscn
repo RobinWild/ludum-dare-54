@@ -5,9 +5,9 @@
 [ext_resource type="Material" uid="uid://dvxgkgaofflnj" path="res://assets/spine/spine_regular.tres" id="3_fl4ty"]
 [ext_resource type="Texture2D" uid="uid://ufwly0ajs8yo" path="res://assets/textures/cross.png" id="5_vfr7l"]
 [ext_resource type="Script" path="res://scripts/cursor/momentum_controller.gd" id="6_0w3to"]
-[ext_resource type="AudioStream" uid="uid://kh5wvx1j5dw2" path="res://assets/audio/cursor/click-on.wav" id="7_2vyf6"]
 [ext_resource type="Script" path="res://scripts/cursor/cursor_input_controller.gd" id="7_3ajbw"]
-[ext_resource type="AudioStream" uid="uid://dsunf34fht4yq" path="res://assets/audio/cursor/click-off.wav" id="8_k37jc"]
+[ext_resource type="AudioStream" uid="uid://djv3s2kf7ia1i" path="res://assets/audio/click-on.mp3" id="7_7nq5w"]
+[ext_resource type="AudioStream" uid="uid://o3nk26yguojs" path="res://assets/audio/click-off.mp3" id="8_g1r0r"]
 [ext_resource type="Script" path="res://scripts/cursor/pointer_controller.gd" id="11_pesg3"]
 
 [node name="CursorRoot" type="Control"]
@@ -48,10 +48,10 @@ offset_bottom = 40.0
 script = ExtResource("7_3ajbw")
 
 [node name="ClickOn" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_2vyf6")
+stream = ExtResource("7_7nq5w")
 
 [node name="ClickOff" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_k37jc")
+stream = ExtResource("8_g1r0r")
 
 [node name="PointerController" type="Node" parent="."]
 script = ExtResource("11_pesg3")

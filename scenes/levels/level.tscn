@@ -1,6 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://biukrtneh1jlv"]
+[gd_scene load_steps=39 format=3 uid="uid://biukrtneh1jlv"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_47yca"]
+[ext_resource type="Texture2D" uid="uid://rggd4iy1xe53" path="res://assets/textures/DzzCLZBVsAE4Qn8.jpeg" id="2_ca0bu"]
 [ext_resource type="Texture2D" uid="uid://bp63r0qdaoagx" path="res://assets/textures/256square.png" id="2_vtb0o"]
 [ext_resource type="Texture2D" uid="uid://do3wxnbfnw8a0" path="res://assets/textures/main_menu/twitter/robbobin-pfp.png" id="3_2c2te"]
 [ext_resource type="PackedScene" uid="uid://lxoiljnwu1ym" path="res://scenes/entities/cursor.tscn" id="3_hkolo"]
@@ -20,13 +21,208 @@
 [ext_resource type="Texture2D" uid="uid://d3msvoj8wcvnw" path="res://assets/textures/main_menu/start/continue-normal.png" id="17_rx1su"]
 [ext_resource type="Texture2D" uid="uid://1uerunr0j4e4" path="res://assets/textures/main_menu/start/continue-press.png" id="18_hu22n"]
 [ext_resource type="Texture2D" uid="uid://8uomgsxrauf2" path="res://assets/textures/main_menu/start/continue-hover.png" id="19_v0jx1"]
+[ext_resource type="AudioStream" uid="uid://deyjm8vqxdf5x" path="res://assets/audio/gong.mp3" id="20_vsnpl"]
 [ext_resource type="Texture2D" uid="uid://cwagv23xov8tg" path="res://assets/textures/main_menu/start/menu-normal.png" id="21_xwy6r"]
 [ext_resource type="Texture2D" uid="uid://bqqq1s6gbqyp0" path="res://assets/textures/main_menu/start/menu-press.png" id="22_21yme"]
 [ext_resource type="Texture2D" uid="uid://yl7cmvnf8tda" path="res://assets/textures/main_menu/start/menu-hover.png" id="22_vaqyh"]
-[ext_resource type="Script" path="res://scripts/spintest.gd" id="23_33se8"]
-[ext_resource type="Texture2D" uid="uid://dxim8163hpyd3" path="res://assets/textures/main_menu/start/time.png" id="23_qyc12"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bd8ol"]
+
+[sub_resource type="Animation" id="Animation_0cix6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuMain/Quit:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(837, 820)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuMain/StartButton:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(610, 492)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuMain/Robbobin:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1751, 199)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MenuMain/VolumeControls:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(92, 520)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MenuMain/MenuBg:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.113725, 0.113725, 0.113725, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_y4pti"]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuMain/Quit:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(837, 1191)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuMain/StartButton:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(610, 1120)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuMain/Robbobin:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1751, -208)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MenuMain/VolumeControls:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-123, 520)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MenuMain/MenuBg:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.113725, 0.113725, 0.113725, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uv4kn"]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuMain/Quit:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.307786, 2.92817),
+"update": 0,
+"values": [Vector2(837, 1191), Vector2(837, 820)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuMain/StartButton:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.307786, 2.92817),
+"update": 0,
+"values": [Vector2(610, 1120), Vector2(610, 492)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuMain/Robbobin:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.307786, 2.92817),
+"update": 0,
+"values": [Vector2(1751, -208), Vector2(1751, 199)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MenuMain/VolumeControls:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.307786, 2.92817),
+"update": 0,
+"values": [Vector2(-123, 520), Vector2(92, 520)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MenuMain/MenuBg:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.307786, 1),
+"update": 0,
+"values": [Color(0.113725, 0.113725, 0.113725, 0), Color(0.113725, 0.113725, 0.113725, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qqmts"]
+_data = {
+"RESET": SubResource("Animation_0cix6"),
+"hide": SubResource("Animation_y4pti"),
+"show": SubResource("Animation_uv4kn")
+}
 
 [sub_resource type="Theme" id="Theme_4qbyu"]
 default_font = ExtResource("6_oqqao")
@@ -40,6 +236,16 @@ VSlider/icons/grabber_highlight = ExtResource("14_bg5ai")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jg2a7"]
 bg_color = Color(0.996094, 0.394531, 0.15625, 1)
 
+[sub_resource type="Theme" id="Theme_1eeol"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bauge"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ysymt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ci2g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gm2aq"]
+
 [node name="Level" type="Node2D"]
 script = ExtResource("1_47yca")
 
@@ -47,8 +253,8 @@ script = ExtResource("1_47yca")
 modulate = Color(0.901961, 0.901961, 0.901961, 1)
 material = SubResource("CanvasItemMaterial_bd8ol")
 position = Vector2(968, 576)
-scale = Vector2(7.64062, 7.64062)
-texture = ExtResource("2_vtb0o")
+scale = Vector2(1.0898, 1.0898)
+texture = ExtResource("2_ca0bu")
 
 [node name="MenuButton" type="TextureButton" parent="."]
 offset_left = 1746.0
@@ -60,18 +266,18 @@ texture_normal = ExtResource("21_xwy6r")
 texture_pressed = ExtResource("22_21yme")
 texture_hover = ExtResource("22_vaqyh")
 
-[node name="MenuMain" type="CanvasGroup" parent="."]
+[node name="MenuMain" type="AnimationPlayer" parent="."]
 process_mode = 3
-visible = false
+libraries = {
+"": SubResource("AnimationLibrary_qqmts")
+}
 
-[node name="StartButton" type="TextureButton" parent="MenuMain"]
-offset_left = 610.0
-offset_top = 492.0
-offset_right = 1310.0
-offset_bottom = 792.0
-texture_normal = ExtResource("9_yfqag")
-texture_pressed = ExtResource("10_y2xr5")
-texture_hover = ExtResource("11_xumbs")
+[node name="MenuBg" type="Sprite2D" parent="MenuMain"]
+modulate = Color(0.113725, 0.113725, 0.113725, 1)
+material = SubResource("CanvasItemMaterial_bd8ol")
+position = Vector2(968, 576)
+scale = Vector2(7.64062, 7.64062)
+texture = ExtResource("2_vtb0o")
 
 [node name="Quit" type="TextureButton" parent="MenuMain"]
 offset_left = 837.0
@@ -81,6 +287,15 @@ offset_bottom = 970.0
 texture_normal = ExtResource("6_h3n7l")
 texture_pressed = ExtResource("7_vgq37")
 texture_hover = ExtResource("8_8wjm1")
+
+[node name="StartButton" type="TextureButton" parent="MenuMain"]
+offset_left = 610.0
+offset_top = 492.0
+offset_right = 1310.0
+offset_bottom = 792.002
+texture_normal = ExtResource("9_yfqag")
+texture_pressed = ExtResource("10_y2xr5")
+texture_hover = ExtResource("11_xumbs")
 
 [node name="Robbobin" type="Node2D" parent="MenuMain"]
 position = Vector2(1751, 199)
@@ -122,7 +337,7 @@ text = "Robbobin"
 horizontal_alignment = 1
 
 [node name="VolumeControls" type="Sprite2D" parent="MenuMain"]
-position = Vector2(120, 520)
+position = Vector2(92, 520)
 texture = ExtResource("14_7gbwn")
 
 [node name="VolumeSlider" type="VSlider" parent="MenuMain/VolumeControls"]
@@ -142,47 +357,66 @@ bus_name = "Master"
 [node name="ExampleSound" type="AudioStreamPlayer2D" parent="MenuMain/VolumeControls/VolumeSlider"]
 stream = ExtResource("16_nj36g")
 
+[node name="SfxGong" type="AudioStreamPlayer2D" parent="MenuMain"]
+stream = ExtResource("20_vsnpl")
+volume_db = 6.584
+
 [node name="MenuMini" type="CanvasGroup" parent="."]
 process_mode = 3
-visible = false
 
-[node name="WhiteLeft2" type="Sprite2D" parent="MenuMini"]
+[node name="Dimmer" type="Sprite2D" parent="MenuMini"]
 modulate = Color(0, 0, 0, 0.45098)
 position = Vector2(969, 563)
 scale = Vector2(7.71094, 4.64062)
 texture = ExtResource("2_vtb0o")
 
+[node name="Dimmer2" type="Sprite2D" parent="MenuMini"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1664, 555)
+rotation = -0.168376
+scale = Vector2(0.820312, 5.03666)
+texture = ExtResource("2_vtb0o")
+
+[node name="Dimmer3" type="Sprite2D" parent="MenuMini"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(64.7138, 554.146)
+rotation = -0.0837524
+scale = Vector2(0.820312, 4.64062)
+texture = ExtResource("2_vtb0o")
+
 [node name="WhiteLeft" type="Sprite2D" parent="MenuMini"]
-position = Vector2(78, 563)
-scale = Vector2(0.75, 4.64062)
+position = Vector2(17.4888, 557.112)
+rotation = -0.117053
+scale = Vector2(0.948428, 4.64062)
 texture = ExtResource("2_vtb0o")
 
 [node name="WhiteRight" type="Sprite2D" parent="MenuMini"]
-position = Vector2(1715.5, 563)
+position = Vector2(1825, 539)
+rotation = -0.123651
 scale = Vector2(1.82422, 4.64062)
 texture = ExtResource("2_vtb0o")
 
 [node name="Continue" type="TextureButton" parent="MenuMini"]
-offset_left = 1530.0
-offset_top = 715.0
-offset_right = 1880.0
-offset_bottom = 865.0
+offset_left = 1578.0
+offset_top = 789.0
+offset_right = 1928.0
+offset_bottom = 939.0
 texture_normal = ExtResource("17_rx1su")
 texture_pressed = ExtResource("18_hu22n")
 texture_hover = ExtResource("19_v0jx1")
 
 [node name="Menu" type="TextureButton" parent="MenuMini"]
-offset_left = 1630.0
-offset_top = 860.0
-offset_right = 1880.0
-offset_bottom = 1010.0
+offset_left = 1677.0
+offset_top = 927.0
+offset_right = 1927.0
+offset_bottom = 1077.0
 scale = Vector2(0.621749, 0.621749)
 texture_normal = ExtResource("6_h3n7l")
 texture_pressed = ExtResource("7_vgq37")
 texture_hover = ExtResource("8_8wjm1")
 
 [node name="Robbobin" type="Node2D" parent="MenuMini"]
-position = Vector2(1704, 531)
+position = Vector2(1745, 180)
 
 [node name="RobbobinButton" type="TextureButton" parent="MenuMini/Robbobin"]
 offset_left = -147.0
@@ -221,7 +455,7 @@ text = "Robbobin"
 horizontal_alignment = 1
 
 [node name="VolumeControls" type="Sprite2D" parent="MenuMini"]
-position = Vector2(84, 520)
+position = Vector2(51, 520)
 texture = ExtResource("14_7gbwn")
 
 [node name="VolumeSlider" type="VSlider" parent="MenuMini/VolumeControls"]
@@ -241,18 +475,31 @@ bus_name = "Master"
 [node name="ExampleSound" type="AudioStreamPlayer2D" parent="MenuMini/VolumeControls/VolumeSlider"]
 stream = ExtResource("16_nj36g")
 
+[node name="ContinueArea" type="Button" parent="MenuMini"]
+offset_left = 114.0
+offset_top = -95.0
+offset_right = 1462.0
+offset_bottom = 1323.0
+rotation = -0.104453
+theme = SubResource("Theme_1eeol")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bauge")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ysymt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ci2g")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gm2aq")
+
 [node name="CursorRoot" parent="." instance=ExtResource("3_hkolo")]
 process_mode = 3
+z_index = 999
 
-[node name="Time" type="Sprite2D" parent="."]
-position = Vector2(41, 40)
-texture = ExtResource("23_qyc12")
-script = ExtResource("23_33se8")
+[node name="Node2D" type="Node2D" parent="."]
 
 [connection signal="pressed" from="MenuButton" to="." method="ToggleMiniMenu"]
-[connection signal="pressed" from="MenuMain/StartButton" to="." method="StartGame"]
 [connection signal="pressed" from="MenuMain/Quit" to="." method="QuitGame"]
+[connection signal="pressed" from="MenuMain/StartButton" to="." method="StartGame"]
 [connection signal="pressed" from="MenuMain/Robbobin/RobbobinButton" to="." method="OpenTwitter"]
+[connection signal="value_changed" from="MenuMain/VolumeControls/VolumeSlider" to="MenuMini/VolumeControls/VolumeSlider" method="ChangeValue"]
 [connection signal="pressed" from="MenuMini/Continue" to="." method="ToggleMiniMenu"]
 [connection signal="pressed" from="MenuMini/Menu" to="." method="MainMenu"]
 [connection signal="pressed" from="MenuMini/Robbobin/RobbobinButton" to="." method="OpenTwitter"]
+[connection signal="value_changed" from="MenuMini/VolumeControls/VolumeSlider" to="MenuMain/VolumeControls/VolumeSlider" method="ChangeValue"]
+[connection signal="pressed" from="MenuMini/ContinueArea" to="." method="ToggleMiniMenu"]

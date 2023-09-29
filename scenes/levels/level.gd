@@ -6,7 +6,7 @@ var miniMenuOpen: bool = false
 
 func _ready():
 	$MenuMini.hide()
-	$"MenuMain".show()
+#	$"MenuMain".show()
 	$MenuButton.hide()
 	MakeScreenTransparent()
 
@@ -25,15 +25,18 @@ func OpenTwitter():
 	OS.shell_open("https://twitter.com/Robbobin")
 
 func StartGame():
+	$MenuMain.current_animation = "hide"
 	mainMenuOpen = false
 	get_tree().paused = false
-	$"MenuMain".hide()
+#	$"MenuMain".hide()
 	$MenuButton.show()
+	$MenuMain/SfxGong.play()
 
 func MainMenu():
+	$MenuMain.current_animation = "show"
 	ToggleMiniMenu()
 	get_tree().paused = true
-	$"MenuMain".show()
+#	$"MenuMain".show()
 	$MenuButton.hide()
 
 func ToggleMiniMenu():
@@ -50,3 +53,7 @@ func ToggleMiniMenu():
 func _input(event):
 	if event.is_action_pressed("menu"):
 		ToggleMiniMenu()
+
+
+func _on_start_button_pressed():
+	pass # Replace with function body.

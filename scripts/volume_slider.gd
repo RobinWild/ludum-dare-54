@@ -13,3 +13,6 @@ func _on_value_changed(value: float) -> void:
 
 func _on_drag_ended():
 	$ExampleSound.play()
+
+func ChangeValue(float):
+	value = float
