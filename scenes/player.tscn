@@ -1,9 +1,92 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwy086fn6l1tn"]
+[gd_scene load_steps=4 format=3 uid="uid://dwy086fn6l1tn"]
 
 [ext_resource type="SpineSkeletonDataResource" uid="uid://dwfs1vlbkj2qe" path="res://assets/spine/player/player_data.tres" id="1_bqh4g"]
-[ext_resource type="Script" path="res://scripts/player_animation.gd" id="2_j2dmh"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_yoij4"]
+
+[sub_resource type="GDScript" id="GDScript_qs2bk"]
+script/source = "extends SpineSprite
+
+var idleTrack: SpineTrackEntry
+var targetTrack: SpineTrackEntry
+var weaponTrack: SpineTrackEntry
+
+var equippedBow: bool = false
+
+@onready var ikBone: SpineBoneNode = $targetIk
+var isTargetting: bool = false
+
+func _ready():
+	setAnimations()
+
+func _process(delta):
+	ikBone.global_position = get_viewport().get_mouse_position()
+	get_skeleton().set_to_setup_pose()
+
+func setAnimations():
+	idleTrack = get_animation_state().set_animation(\"movement/groovyWalk\", true, 1)
+	var worldSpeed = $\"../..\".worldSpeed / 100
+	idleTrack.set_time_scale(1.5 * worldSpeed)
+	idleTrack.set_alpha(1)
+	
+	var hitTrack = get_animation_state().set_animation(\"empty\", true, 2)
+	
+	targetTrack = get_animation_state().set_animation(\"target/half\", true, 3)
+	
+	weaponTrack = get_animation_state().set_animation(\"weapon/noWeapon\", true, 4)
+
+func _input(event):
+	if event.is_action_pressed(\"right_click\"):
+		ToggleTargetMode()
+	if event.is_action_pressed(\"jump\"):
+		EquipBow()
+	if event.is_action_pressed(\"left_click\"):
+		DrawBow()
+	if event.is_action_released(\"left_click\"):
+		LooseBow()
+
+
+func ReceiveHit():
+	var trackEntry = get_animation_state().set_animation(\"hit/getHit\", false, 2)
+	trackEntry.set_mix_duration(0)
+	trackEntry.set_mix_blend(SpineConstant.MixBlend_Add)
+
+func ToggleTargetMode():
+	if isTargetting:
+		isTargetting = false
+		targetTrack = get_animation_state().set_animation(\"target/half\", true, 3)
+		targetTrack.set_mix_duration(0.25)
+		
+	else:
+		isTargetting = true
+		targetTrack = get_animation_state().set_animation(\"target/on\", true, 3)
+		targetTrack.set_mix_duration(0.25)
+
+func SetTargetMode(modeOn):
+	if modeOn:
+		isTargetting = true
+		targetTrack = get_animation_state().set_animation(\"target/on\", true, 3)
+		targetTrack.set_mix_duration(0.25)
+	else:
+		isTargetting = false
+		targetTrack = get_animation_state().set_animation(\"target/half\", true, 3)
+		targetTrack.set_mix_duration(0.25)
+
+func EquipBow():
+	equippedBow = true
+	weaponTrack = get_animation_state().set_animation(\"weapon/bowEquip\", false, 4)
+
+func DrawBow():
+	if equippedBow:
+		weaponTrack = get_animation_state().set_animation(\"weapon/bowDraw\", false, 4)
+
+func LooseBow():
+	if equippedBow:
+		equippedBow = false
+		weaponTrack = get_animation_state().set_animation(\"weapon/bowLoose\", false, 4)
+"
 
 [node name="Player" type="Node2D"]
+script = ExtResource("1_yoij4")
 
 [node name="SpineSprite" type="SpineSprite" parent="."]
 skeleton_data_res = ExtResource("1_bqh4g")
@@ -11,4 +94,11 @@ preview_skin = "Default"
 preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0
-script = ExtResource("2_j2dmh")
+script = SubResource("GDScript_qs2bk")
+
+[node name="targetIk" type="SpineBoneNode" parent="SpineSprite"]
+show_behind_parent = true
+position = Vector2(203.304, -89.6119)
+scale = Vector2(0.25, 0.25)
+bone_name = "targetIk"
+bone_mode = 1

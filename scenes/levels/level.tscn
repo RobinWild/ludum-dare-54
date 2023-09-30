@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://biukrtneh1jlv"]
+[gd_scene load_steps=40 format=3 uid="uid://biukrtneh1jlv"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_47yca"]
 [ext_resource type="Texture2D" uid="uid://bp63r0qdaoagx" path="res://assets/textures/256square.png" id="2_vtb0o"]
@@ -24,6 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://deyjm8vqxdf5x" path="res://assets/audio/gong.mp3" id="20_vsnpl"]
 [ext_resource type="Texture2D" uid="uid://cwagv23xov8tg" path="res://assets/textures/main_menu/start/menu-normal.png" id="21_xwy6r"]
 [ext_resource type="Texture2D" uid="uid://bqqq1s6gbqyp0" path="res://assets/textures/main_menu/start/menu-press.png" id="22_21yme"]
+[ext_resource type="PackedScene" uid="uid://ca4fmxxby3sr4" path="res://scenes/menu_player.tscn" id="22_fb2sn"]
 [ext_resource type="Texture2D" uid="uid://yl7cmvnf8tda" path="res://assets/textures/main_menu/start/menu-hover.png" id="22_vaqyh"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bd8ol"]
@@ -90,6 +91,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(0.113725, 0.113725, 0.113725, 1)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MenuMain/StartButton:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_y4pti"]
 resource_name = "hide"
@@ -115,7 +128,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(610, 1120)]
+"values": [Vector2(534, 1382)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -153,6 +166,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(0.113725, 0.113725, 0.113725, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MenuMain/StartButton:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_uv4kn"]
 resource_name = "show"
@@ -164,7 +189,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.307786, 2.92817),
+"transitions": PackedFloat32Array(0.287174, 2.92817),
 "update": 0,
 "values": [Vector2(837, 1191), Vector2(837, 820)]
 }
@@ -176,9 +201,9 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.307786, 2.92817),
+"transitions": PackedFloat32Array(0.287174, 2.92817),
 "update": 0,
-"values": [Vector2(610, 1120), Vector2(610, 492)]
+"values": [Vector2(610, 1420), Vector2(540, 492)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -188,7 +213,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.307786, 2.92817),
+"transitions": PackedFloat32Array(0.287174, 2.92817),
 "update": 0,
 "values": [Vector2(1751, -208), Vector2(1751, 199)]
 }
@@ -200,7 +225,7 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.307786, 2.92817),
+"transitions": PackedFloat32Array(0.287174, 2.92817),
 "update": 0,
 "values": [Vector2(-123, 520), Vector2(92, 520)]
 }
@@ -212,9 +237,21 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.307786, 1),
+"transitions": PackedFloat32Array(0.287174, 1),
 "update": 0,
-"values": [Color(0.113725, 0.113725, 0.113725, 0), Color(0.113725, 0.113725, 0.113725, 1)]
+"values": [Color(0.113725, 0.113725, 0.113725, 0), Color(0.890196, 0.890196, 0.890196, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MenuMain/StartButton:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qqmts"]
@@ -251,7 +288,6 @@ script = ExtResource("1_47yca")
 packedGameScene = ExtResource("4_vb4i6")
 
 [node name="BgTexture" type="Sprite2D" parent="."]
-modulate = Color(0.901961, 0.901961, 0.901961, 1)
 material = SubResource("CanvasItemMaterial_bd8ol")
 position = Vector2(968, 576)
 scale = Vector2(7.6124, 4.62016)
@@ -269,6 +305,7 @@ texture_hover = ExtResource("22_vaqyh")
 
 [node name="MenuMain" type="AnimationPlayer" parent="."]
 process_mode = 3
+autoplay = "show"
 libraries = {
 "": SubResource("AnimationLibrary_qqmts")
 }
@@ -297,9 +334,14 @@ offset_left = 610.0
 offset_top = 492.0
 offset_right = 1310.0
 offset_bottom = 792.002
+disabled = true
 texture_normal = ExtResource("9_yfqag")
 texture_pressed = ExtResource("10_y2xr5")
 texture_hover = ExtResource("11_xumbs")
+
+[node name="Player" parent="MenuMain/StartButton" instance=ExtResource("22_fb2sn")]
+z_index = 100
+position = Vector2(716, 274)
 
 [node name="Robbobin" type="Node2D" parent="MenuMain"]
 z_index = 10

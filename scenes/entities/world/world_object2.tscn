@@ -1,0 +1,99 @@
+[gd_scene load_steps=14 format=3 uid="uid://keb65tsc4k56"]
+
+[ext_resource type="Script" path="res://scripts/world_object.gd" id="1_ubkah"]
+[ext_resource type="Texture2D" uid="uid://d1d0sbwq0bk2k" path="res://assets/textures/world/decoration/decoration-1.png" id="2_h15u4"]
+[ext_resource type="Texture2D" uid="uid://c1gfgw7uowct8" path="res://assets/textures/world/decoration/decoration-2.png" id="3_lywyv"]
+[ext_resource type="Texture2D" uid="uid://coo2xem53fan2" path="res://assets/textures/world/decoration/decoration-6.png" id="4_vbtog"]
+[ext_resource type="Texture2D" uid="uid://dbi8h1ug8kfce" path="res://assets/textures/world/decoration/decoration-11.png" id="5_pt12c"]
+[ext_resource type="Texture2D" uid="uid://bup4xds8ukbqi" path="res://assets/textures/world/decoration/decoration-19.png" id="6_pncag"]
+[ext_resource type="Texture2D" uid="uid://dnd6de1f68qd4" path="res://assets/textures/world/decoration/decoration-21.png" id="7_mhj5h"]
+[ext_resource type="Texture2D" uid="uid://ds5sxp76yfa2w" path="res://assets/textures/world/decoration/decoration-8.png" id="8_1hsjv"]
+[ext_resource type="Texture2D" uid="uid://pus8wyhwaqfa" path="res://assets/textures/world/decoration/decoration-7.png" id="9_db3lw"]
+[ext_resource type="Texture2D" uid="uid://b8b6528hwlq4k" path="res://assets/textures/world/decoration/decoration-5.png" id="10_kcv8t"]
+[ext_resource type="Texture2D" uid="uid://cykq5qmfxw35e" path="res://assets/textures/world/decoration/decoration-3.png" id="11_mam04"]
+[ext_resource type="Texture2D" uid="uid://d18edtwbo1pbd" path="res://assets/textures/world/decoration/decoration-20.png" id="12_focw2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pw0qo"]
+size = Vector2(436, 1509)
+
+[node name="WorldObject" type="Area2D"]
+position = Vector2(1972, 724)
+collision_layer = 32
+script = ExtResource("1_ubkah")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(-106, -54)
+texture = ExtResource("2_h15u4")
+
+[node name="WorldObjectCollider" type="CollisionShape2D" parent="."]
+visible = false
+z_index = -10
+position = Vector2(-267, -244)
+shape = SubResource("RectangleShape2D_pw0qo")
+
+[node name="Decoration-2" type="Sprite2D" parent="."]
+position = Vector2(-245, -68)
+texture = ExtResource("3_lywyv")
+
+[node name="Decoration-6" type="Sprite2D" parent="."]
+position = Vector2(-311, -81)
+texture = ExtResource("4_vbtog")
+
+[node name="Decoration-7" type="Sprite2D" parent="."]
+position = Vector2(-371, -85)
+texture = ExtResource("5_pt12c")
+
+[node name="Decoration-3" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(-96.375, -148.25)
+scale = Vector2(-0.75, 0.75)
+texture = ExtResource("3_lywyv")
+
+[node name="Decoration-8" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(-162.375, -161.25)
+scale = Vector2(-0.75, 0.75)
+texture = ExtResource("4_vbtog")
+
+[node name="Decoration-9" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(-222.375, -165.25)
+scale = Vector2(-0.75, 0.75)
+texture = ExtResource("5_pt12c")
+
+[node name="Decoration-19" type="Sprite2D" parent="."]
+z_index = 6
+position = Vector2(-149, 33)
+scale = Vector2(1.33696, 1.33696)
+texture = ExtResource("6_pncag")
+
+[node name="Decoration-20" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(-318, -195)
+scale = Vector2(0.827208, 0.827208)
+texture = ExtResource("7_mhj5h")
+
+[node name="Decoration-10" type="Sprite2D" parent="."]
+position = Vector2(-93, -1)
+texture = ExtResource("8_1hsjv")
+
+[node name="Decoration-11" type="Sprite2D" parent="."]
+position = Vector2(-255, -14)
+texture = ExtResource("9_db3lw")
+
+[node name="Decoration-5" type="Sprite2D" parent="."]
+position = Vector2(-327, -14)
+texture = ExtResource("10_kcv8t")
+
+[node name="Decoration-4" type="Sprite2D" parent="."]
+position = Vector2(-390, -8)
+texture = ExtResource("11_mam04")
+
+[node name="Decoration-12" type="Sprite2D" parent="."]
+position = Vector2(-276, 9)
+texture = ExtResource("3_lywyv")
+
+[node name="Decoration-21" type="Sprite2D" parent="."]
+z_index = 6
+position = Vector2(-237, 47)
+texture = ExtResource("12_focw2")

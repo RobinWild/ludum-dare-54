@@ -2,13 +2,13 @@ extends Node2D
 
 var snapColliders = []
 var itemColliders = []
-var currentPos: Vector2 = global_position
+var currentPos: Vector2 = Vector2(1920,1080)
 var itemPower: int
+var isInInventory: bool = false
 
 func _ready():
 	GetSnapColliders()
 	GetItemColliders()
-	print(itemPower)
 
 func _process(delta):
 	MoveSprite(delta)

@@ -49,12 +49,14 @@ func _input(event):
 	if event.is_action_released("left_click"):
 		if itemBeingMoved != null:
 			if itemBeingMoved.CanSnap() and not itemBeingMoved.IsCollidingWithItem():
+				itemBeingMoved.isInInventory = true
+				itemBeingMoved.reparent($"../InventoryRoot/Inventory")
 				itemBeingMoved.position.x = round(itemBeingMoved.position.x / 100) * 100
 				itemBeingMoved.position.y = round(itemBeingMoved.position.y / 100) * 100
-				$"../Inventory".AddItem(itemBeingMoved)
+				$"../InventoryRoot/Inventory".AddItem(itemBeingMoved)
 				itemBeingMoved = null
-			elif not CheckForDeleteCollisions():
-				$"../Inventory".RemoveItem(itemBeingMoved)
+			elif not CheckForDeleteCollisions() and itemBeingMoved.isInInventory:
+				$"../InventoryRoot/Inventory".RemoveItem(itemBeingMoved)
 				itemBeingMoved.queue_free()
 				itemBeingMoved = null
 			else:
