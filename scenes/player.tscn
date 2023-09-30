@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwy086fn6l1tn"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://dwfs1vlbkj2qe" path="res://assets/spine/player/player_data.tres" id="1_bqh4g"]
+[ext_resource type="Script" path="res://scripts/player_animation.gd" id="2_j2dmh"]
+
+[node name="Player" type="Node2D"]
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("1_bqh4g")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource("2_j2dmh")

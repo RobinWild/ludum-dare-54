@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddutbr7cok8rk"]
+
+[ext_resource type="Script" path="res://scripts/item.gd" id="1_66rxs"]
+[ext_resource type="PackedScene" uid="uid://d1ij3la6jj4na" path="res://scenes/entities/inventory/tile_collider_clickable.tscn" id="2_ny4dw"]
+[ext_resource type="Texture2D" uid="uid://2js5626lun7k" path="res://assets/textures/items/item-shield.png" id="3_ag8up"]
+
+[node name="Shield" type="Node2D"]
+z_index = 1
+script = ExtResource("1_66rxs")
+
+[node name="Tile4" parent="." instance=ExtResource("2_ny4dw")]
+position = Vector2(-50, -50)
+
+[node name="Tile5" parent="." instance=ExtResource("2_ny4dw")]
+position = Vector2(-50, 50)
+
+[node name="Tile6" parent="." instance=ExtResource("2_ny4dw")]
+
+[node name="Tile7" parent="." instance=ExtResource("2_ny4dw")]
+position = Vector2(50, -50)
+
+[node name="ItemSprite" type="Sprite2D" parent="."]
+position = Vector2(1, 2)
+scale = Vector2(0.851852, 0.851852)
+texture = ExtResource("3_ag8up")

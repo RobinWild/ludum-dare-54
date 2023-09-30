@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1ij3la6jj4na"]
+
+[ext_resource type="Texture2D" uid="uid://6ijprru5m426" path="res://assets/textures/inventory/inventory-slot.png" id="1_8lt5u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xvnr1"]
+radius = 11.0454
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eu072"]
+size = Vector2(56, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxncg"]
+size = Vector2(100, 100)
+
+[node name="Tile" type="Sprite2D"]
+modulate = Color(1, 0.0901961, 0.329412, 0)
+position = Vector2(50, 50)
+texture = ExtResource("1_8lt5u")
+
+[node name="SnapArea" type="Area2D" parent="."]
+collision_layer = 4
+input_pickable = false
+
+[node name="SnapShape" type="CollisionShape2D" parent="SnapArea"]
+shape = SubResource("CircleShape2D_xvnr1")
+
+[node name="CollisionArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+input_pickable = false
+
+[node name="CollisionShape" type="CollisionShape2D" parent="CollisionArea"]
+shape = SubResource("RectangleShape2D_eu072")
+
+[node name="TileClickArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="TileClickShape" type="CollisionShape2D" parent="TileClickArea"]
+shape = SubResource("RectangleShape2D_xxncg")

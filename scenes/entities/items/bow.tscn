@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxugw3ljvc7gl"]
+
+[ext_resource type="Script" path="res://scripts/item.gd" id="1_klaxo"]
+[ext_resource type="PackedScene" uid="uid://d1ij3la6jj4na" path="res://scenes/entities/inventory/tile_collider_clickable.tscn" id="2_0k3uq"]
+[ext_resource type="Texture2D" uid="uid://cj07xvjp0a8dx" path="res://assets/textures/items/item-bow.png" id="2_jmlag"]
+
+[node name="Bow" type="Node2D"]
+z_index = 1
+script = ExtResource("1_klaxo")
+
+[node name="Tile4" parent="." instance=ExtResource("2_0k3uq")]
+position = Vector2(-50, -49.9444)
+
+[node name="Tile5" parent="." instance=ExtResource("2_0k3uq")]
+position = Vector2(-50, 50.0556)
+
+[node name="Tile6" parent="." instance=ExtResource("2_0k3uq")]
+position = Vector2(50, 50.0556)
+
+[node name="ItemSprite" type="Sprite2D" parent="."]
+position = Vector2(1, 2)
+scale = Vector2(0.851852, 0.851852)
+texture = ExtResource("2_jmlag")

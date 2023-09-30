@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://gdcf4hjv5y07"]
+
+[ext_resource type="Texture2D" uid="uid://6ijprru5m426" path="res://assets/textures/inventory/inventory-slot.png" id="1_qtni8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xvnr1"]
+radius = 30.0
+
+[node name="InventorySlot" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(50, 50)
+texture = ExtResource("1_qtni8")
+
+[node name="TileCollisionArea" type="Area2D" parent="."]
+position = Vector2(50, 50)
+
+[node name="TileCollisionShape" type="CollisionShape2D" parent="TileCollisionArea"]
+shape = SubResource("CircleShape2D_xvnr1")

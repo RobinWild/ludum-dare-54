@@ -4,9 +4,11 @@ extends Node2D
 var mainMenuOpen: bool = true
 var miniMenuOpen: bool = false
 
+@export var packedGameScene: PackedScene
+var gameScene
+
 func _ready():
 	$MenuMini.hide()
-#	$"MenuMain".show()
 	$MenuButton.hide()
 	MakeScreenTransparent()
 
@@ -25,14 +27,18 @@ func OpenTwitter():
 	OS.shell_open("https://twitter.com/Robbobin")
 
 func StartGame():
+	gameScene = packedGameScene.instantiate()
+	add_child(gameScene)
 	$MenuMain.current_animation = "hide"
 	mainMenuOpen = false
 	get_tree().paused = false
-#	$"MenuMain".hide()
 	$MenuButton.show()
 	$MenuMain/SfxGong.play()
 
 func MainMenu():
+	if gameScene != null:
+		gameScene.queue_free()
+		
 	$MenuMain.current_animation = "show"
 	ToggleMiniMenu()
 	get_tree().paused = true
@@ -53,7 +59,3 @@ func ToggleMiniMenu():
 func _input(event):
 	if event.is_action_pressed("menu"):
 		ToggleMiniMenu()
-
-
-func _on_start_button_pressed():
-	pass # Replace with function body.

@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://ded8ehcuaw2am"
+path="res://.godot/imported/player.atlas-2395bf2a1f8058ebf1102d40ea06c2e0.spatlas"
+
+[deps]
+
+source_file="res://assets/spine/player/player.atlas"
+dest_files=["res://.godot/imported/player.atlas-2395bf2a1f8058ebf1102d40ea06c2e0.spatlas"]
+
+[params]
+
+normal_map_prefix="n"

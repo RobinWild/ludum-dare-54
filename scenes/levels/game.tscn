@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://coim4uydgtsj"]
+
+[ext_resource type="Script" path="res://scripts/item_move_handler.gd" id="1_hm5qu"]
+[ext_resource type="PackedScene" uid="uid://x04r4uox0nka" path="res://scenes/entities/inventory/inventory.tscn" id="1_md78j"]
+[ext_resource type="PackedScene" uid="uid://bxugw3ljvc7gl" path="res://scenes/entities/items/bow.tscn" id="2_4bgwk"]
+[ext_resource type="PackedScene" uid="uid://ddutbr7cok8rk" path="res://scenes/entities/items/shield.tscn" id="4_l06ip"]
+[ext_resource type="PackedScene" uid="uid://dwy086fn6l1tn" path="res://scenes/player.tscn" id="5_y51av"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ywj2r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ncau"]
+size = Vector2(622, 589)
+
+[node name="Game" type="Node2D"]
+
+[node name="ItemMoveHandler" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("1_hm5qu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemMoveHandler"]
+shape = SubResource("CircleShape2D_ywj2r")
+
+[node name="DeleteArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="DeleteShape" type="CollisionShape2D" parent="DeleteArea"]
+position = Vector2(300, 500)
+shape = SubResource("RectangleShape2D_8ncau")
+
+[node name="Inventory" parent="." instance=ExtResource("1_md78j")]
+position = Vector2(300, 500)
+
+[node name="Bow" parent="." instance=ExtResource("2_4bgwk")]
+position = Vector2(734, 872)
+
+[node name="Shield" parent="." instance=ExtResource("4_l06ip")]
+position = Vector2(1221, 828)
+
+[node name="Player" parent="." instance=ExtResource("5_y51av")]
+position = Vector2(916, 919)
