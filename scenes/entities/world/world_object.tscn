@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6ibcn67gg73d"]
+[gd_scene load_steps=11 format=3 uid="uid://b6ibcn67gg73d"]
 
 [ext_resource type="Script" path="res://scripts/world_object.gd" id="1_blgft"]
 [ext_resource type="Texture2D" uid="uid://c1gfgw7uowct8" path="res://assets/textures/world/decoration/decoration-2.png" id="2_ll70o"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://pus8wyhwaqfa" path="res://assets/textures/world/decoration/decoration-7.png" id="7_g1377"]
 [ext_resource type="Texture2D" uid="uid://b8b6528hwlq4k" path="res://assets/textures/world/decoration/decoration-5.png" id="8_8672v"]
 [ext_resource type="Texture2D" uid="uid://d1d0sbwq0bk2k" path="res://assets/textures/world/decoration/decoration-1.png" id="9_rb2kv"]
-[ext_resource type="PackedScene" uid="uid://bxugw3ljvc7gl" path="res://scenes/entities/items/bow.tscn" id="10_5w6qc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pw0qo"]
 size = Vector2(704, 1509)
@@ -25,94 +24,97 @@ position = Vector2(-421, -256.5)
 shape = SubResource("RectangleShape2D_pw0qo")
 
 [node name="Decoration-2" type="Sprite2D" parent="."]
-position = Vector2(-569.5, -135.415)
+z_index = -6
+position = Vector2(-571.5, -63.665)
 texture = ExtResource("2_ll70o")
 
 [node name="Decoration-6" type="Sprite2D" parent="."]
-position = Vector2(-635.5, -148.415)
+z_index = -6
+position = Vector2(-637.5, -76.665)
 texture = ExtResource("3_bkgwg")
 
 [node name="Decoration-7" type="Sprite2D" parent="."]
-position = Vector2(-695.5, -152.415)
+z_index = -6
+position = Vector2(-697.5, -80.665)
 texture = ExtResource("4_0ig0i")
 
 [node name="Decoration-3" type="Sprite2D" parent="."]
-z_index = -6
-position = Vector2(-420.875, -215.665)
+z_index = -10
+position = Vector2(-422.875, -143.915)
 scale = Vector2(-0.75, 0.75)
 texture = ExtResource("2_ll70o")
 
 [node name="Decoration-8" type="Sprite2D" parent="."]
-z_index = -6
-position = Vector2(-486.875, -228.665)
+z_index = -10
+position = Vector2(-488.875, -156.915)
 scale = Vector2(-0.75, 0.75)
 texture = ExtResource("3_bkgwg")
 
 [node name="Decoration-9" type="Sprite2D" parent="."]
-z_index = -6
-position = Vector2(-549, -226)
+z_index = -10
+position = Vector2(-551, -154.25)
 scale = Vector2(-0.75, 0.75)
 texture = ExtResource("4_0ig0i")
 
 [node name="Decoration-19" type="Sprite2D" parent="."]
-z_index = 6
-position = Vector2(-415, 55.9999)
-scale = Vector2(1.33696, 1.33696)
+z_index = 8
+position = Vector2(-439.726, 132.25)
+scale = Vector2(1.00544, 1.00544)
 texture = ExtResource("5_sg65p")
 
 [node name="Decoration-4" type="Sprite2D" parent="."]
-position = Vector2(-258.5, -135.415)
+z_index = -6
+position = Vector2(-260.5, -63.665)
 texture = ExtResource("2_ll70o")
 
 [node name="Decoration-10" type="Sprite2D" parent="."]
-position = Vector2(-324.5, -148.415)
+z_index = -6
+position = Vector2(-326.5, -76.665)
 texture = ExtResource("3_bkgwg")
 
 [node name="Decoration-11" type="Sprite2D" parent="."]
-position = Vector2(-384.5, -152.415)
+z_index = -6
+position = Vector2(-386.5, -80.665)
 texture = ExtResource("4_0ig0i")
 
 [node name="Decoration-5" type="Sprite2D" parent="."]
-z_index = -6
-position = Vector2(-109.875, -215.665)
+z_index = -10
+position = Vector2(-111.875, -143.915)
 scale = Vector2(-0.75, 0.75)
 texture = ExtResource("2_ll70o")
 
 [node name="Decoration-12" type="Sprite2D" parent="."]
-z_index = -6
-position = Vector2(-175.875, -228.665)
+z_index = -10
+position = Vector2(-177.875, -156.915)
 scale = Vector2(-0.75, 0.75)
 texture = ExtResource("3_bkgwg")
 
 [node name="Decoration-13" type="Sprite2D" parent="."]
-z_index = -6
-position = Vector2(-323, -227)
+z_index = -10
+position = Vector2(-325, -155.25)
 scale = Vector2(-0.75, 0.75)
 texture = ExtResource("4_0ig0i")
 
 [node name="Decoration-14" type="Sprite2D" parent="."]
-position = Vector2(-134, -25)
+position = Vector2(-134, 0)
 texture = ExtResource("6_7sisy")
 
 [node name="Decoration-15" type="Sprite2D" parent="."]
-position = Vector2(-216, 11)
+position = Vector2(-216, 33)
 texture = ExtResource("7_g1377")
 
 [node name="Decoration-16" type="Sprite2D" parent="."]
-position = Vector2(-562, -46)
+position = Vector2(-562, -24)
 texture = ExtResource("3_bkgwg")
 
 [node name="Decoration-17" type="Sprite2D" parent="."]
-position = Vector2(-469, -33)
+position = Vector2(-469, -11)
 texture = ExtResource("8_8672v")
 
 [node name="Decoration-18" type="Sprite2D" parent="."]
-position = Vector2(-633, 4)
+position = Vector2(-633, 26)
 texture = ExtResource("2_ll70o")
 
 [node name="Decoration-1" type="Sprite2D" parent="."]
-position = Vector2(-587, -18)
+position = Vector2(-587, 4)
 texture = ExtResource("9_rb2kv")
-
-[node name="Bow" parent="." instance=ExtResource("10_5w6qc")]
-position = Vector2(-394, -82)

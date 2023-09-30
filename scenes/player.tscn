@@ -26,7 +26,7 @@ func setAnimations():
 	idleTrack = get_animation_state().set_animation(\"movement/groovyWalk\", true, 1)
 	var worldSpeed = $\"../..\".worldSpeed / 100
 	idleTrack.set_time_scale(1.5 * worldSpeed)
-	idleTrack.set_alpha(1)
+	idleTrack.set_alpha(1.3)
 	
 	var hitTrack = get_animation_state().set_animation(\"empty\", true, 2)
 	
@@ -72,8 +72,9 @@ func SetTargetMode(modeOn):
 		targetTrack.set_mix_duration(0.25)
 
 func EquipBow():
-	equippedBow = true
-	weaponTrack = get_animation_state().set_animation(\"weapon/bowEquip\", false, 4)
+	if not equippedBow:
+		equippedBow = true
+		weaponTrack = get_animation_state().set_animation(\"weapon/bowEquip\", false, 4)
 
 func DrawBow():
 	if equippedBow:

@@ -1,0 +1,85 @@
+[gd_scene load_steps=13 format=3 uid="uid://dudm0jgkwh7eg"]
+
+[ext_resource type="Script" path="res://scripts/world_object.gd" id="1_gr5ep"]
+[ext_resource type="Texture2D" uid="uid://d1d0sbwq0bk2k" path="res://assets/textures/world/decoration/decoration-1.png" id="2_yje08"]
+[ext_resource type="Texture2D" uid="uid://c1gfgw7uowct8" path="res://assets/textures/world/decoration/decoration-2.png" id="3_rgq6n"]
+[ext_resource type="Texture2D" uid="uid://coo2xem53fan2" path="res://assets/textures/world/decoration/decoration-6.png" id="4_irncw"]
+[ext_resource type="Texture2D" uid="uid://dbi8h1ug8kfce" path="res://assets/textures/world/decoration/decoration-11.png" id="5_lntfr"]
+[ext_resource type="Texture2D" uid="uid://cnlqnb682ftvy" path="res://assets/textures/world/decoration/decoration-14.png" id="6_3y8pv"]
+[ext_resource type="Texture2D" uid="uid://cu5xhtkre5jct" path="res://assets/textures/world/decoration/decoration-16.png" id="7_t3ftn"]
+[ext_resource type="Texture2D" uid="uid://clcifite2jjwx" path="res://assets/textures/world/decoration/decoration-17.png" id="8_7232g"]
+[ext_resource type="Texture2D" uid="uid://bpowlwxm0w0aq" path="res://assets/textures/world/decoration/decoration-18.png" id="9_8a06v"]
+[ext_resource type="Texture2D" uid="uid://d18edtwbo1pbd" path="res://assets/textures/world/decoration/decoration-20.png" id="10_v7xfi"]
+[ext_resource type="PackedScene" uid="uid://ddutbr7cok8rk" path="res://scenes/entities/items/shield.tscn" id="11_t3jlp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pw0qo"]
+size = Vector2(436, 1509)
+
+[node name="WorldObject" type="Area2D"]
+position = Vector2(1972, 724)
+collision_layer = 32
+script = ExtResource("1_gr5ep")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(-97.5, -21)
+texture = ExtResource("2_yje08")
+
+[node name="WorldObjectCollider" type="CollisionShape2D" parent="."]
+visible = false
+z_index = -10
+position = Vector2(-267, -244)
+shape = SubResource("RectangleShape2D_pw0qo")
+
+[node name="Decoration-2" type="Sprite2D" parent="."]
+position = Vector2(-236.5, -35)
+texture = ExtResource("3_rgq6n")
+
+[node name="Decoration-6" type="Sprite2D" parent="."]
+position = Vector2(-190.5, -45)
+texture = ExtResource("4_irncw")
+
+[node name="Decoration-7" type="Sprite2D" parent="."]
+position = Vector2(-405.5, -51)
+texture = ExtResource("5_lntfr")
+
+[node name="Decoration-3" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(-127.375, -62.25)
+scale = Vector2(-0.75, 0.75)
+texture = ExtResource("3_rgq6n")
+
+[node name="Decoration-8" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(-193.375, -75.25)
+scale = Vector2(-0.75, 0.75)
+texture = ExtResource("4_irncw")
+
+[node name="Decoration-9" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(-253.375, -79.25)
+scale = Vector2(-0.75, 0.75)
+texture = ExtResource("5_lntfr")
+
+[node name="Decoration-14" type="Sprite2D" parent="."]
+position = Vector2(-349.5, -63)
+texture = ExtResource("6_3y8pv")
+
+[node name="Decoration-16" type="Sprite2D" parent="."]
+position = Vector2(-297.5, -52)
+texture = ExtResource("7_t3ftn")
+
+[node name="Decoration-17" type="Sprite2D" parent="."]
+position = Vector2(-89.5, -61)
+texture = ExtResource("8_7232g")
+
+[node name="Decoration-18" type="Sprite2D" parent="."]
+position = Vector2(-169.5, -67)
+texture = ExtResource("9_8a06v")
+
+[node name="Decoration-20" type="Sprite2D" parent="."]
+z_index = 7
+position = Vector2(-361, 87)
+texture = ExtResource("10_v7xfi")
+
+[node name="Shield" parent="." instance=ExtResource("11_t3jlp")]
+position = Vector2(-270, 16)

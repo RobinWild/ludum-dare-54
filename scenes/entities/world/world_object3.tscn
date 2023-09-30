@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://btxouksk2x1qe"]
+[gd_scene load_steps=12 format=3 uid="uid://btxouksk2x1qe"]
 
 [ext_resource type="Script" path="res://scripts/world_object.gd" id="1_ullxf"]
 [ext_resource type="Texture2D" uid="uid://d1d0sbwq0bk2k" path="res://assets/textures/world/decoration/decoration-1.png" id="2_l5ptj"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://clcifite2jjwx" path="res://assets/textures/world/decoration/decoration-17.png" id="8_nuwph"]
 [ext_resource type="Texture2D" uid="uid://bpowlwxm0w0aq" path="res://assets/textures/world/decoration/decoration-18.png" id="9_gg5kn"]
 [ext_resource type="Texture2D" uid="uid://d18edtwbo1pbd" path="res://assets/textures/world/decoration/decoration-20.png" id="10_8imkq"]
-[ext_resource type="PackedScene" uid="uid://ddutbr7cok8rk" path="res://scenes/entities/items/shield.tscn" id="11_lqekk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pw0qo"]
 size = Vector2(436, 1509)
@@ -80,6 +79,3 @@ texture = ExtResource("9_gg5kn")
 z_index = 7
 position = Vector2(-361, 87)
 texture = ExtResource("10_8imkq")
-
-[node name="Shield" parent="." instance=ExtResource("11_lqekk")]
-position = Vector2(-270, 16)

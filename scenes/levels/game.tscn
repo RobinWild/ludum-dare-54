@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://coim4uydgtsj"]
+[gd_scene load_steps=15 format=3 uid="uid://coim4uydgtsj"]
 
 [ext_resource type="Script" path="res://scripts/item_move_handler.gd" id="1_hm5qu"]
 [ext_resource type="PackedScene" uid="uid://x04r4uox0nka" path="res://scenes/entities/inventory/inventory.tscn" id="1_md78j"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://keb65tsc4k56" path="res://scenes/entities/world/world_object2.tscn" id="5_wdgfo"]
 [ext_resource type="PackedScene" uid="uid://dwy086fn6l1tn" path="res://scenes/player.tscn" id="5_y51av"]
 [ext_resource type="PackedScene" uid="uid://btxouksk2x1qe" path="res://scenes/entities/world/world_object3.tscn" id="6_470ko"]
+[ext_resource type="PackedScene" uid="uid://cxhylbn1dluq5" path="res://scenes/entities/world/world_object_bow.tscn" id="7_c53qv"]
+[ext_resource type="PackedScene" uid="uid://dudm0jgkwh7eg" path="res://scenes/entities/world/world_object_shield.tscn" id="8_a8rfb"]
 
 [sub_resource type="Animation" id="Animation_g6yna"]
 length = 0.001
@@ -115,7 +117,7 @@ collide_with_areas = true
 position = Vector2(1257, 0)
 script = ExtResource("5_uqjh8")
 worldSpeed = 150.0
-decorationScenes = Array[PackedScene]([ExtResource("5_wdgfo"), ExtResource("6_470ko"), ExtResource("4_on2l0")])
+decorationScenes = Array[PackedScene]([ExtResource("5_wdgfo"), ExtResource("6_470ko"), ExtResource("4_on2l0"), ExtResource("7_c53qv"), ExtResource("8_a8rfb")])
 
 [node name="Player" parent="WorldRoot/World" instance=ExtResource("5_y51av")]
 z_index = 5
