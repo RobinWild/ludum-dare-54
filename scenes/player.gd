@@ -2,14 +2,23 @@ extends Node2D
 
 @export var basicWorldSpeed = 150
 @onready var worldSpeed = basicWorldSpeed
+@export var maxHealth: int = 1
+@onready var currentHealth: int = maxHealth
 var targetExtraSpeed: float
 var actualExtraSpeed: float
+var difficulty: float = 0
 var extraSpeedAcceleration: float
 @onready var spineSprite: SpineSprite = $SpineSprite
 var itemInUse
 
 var bowDrawn: bool = false
+var swordReady: bool = false
 var shieldOut: bool = false
+var waitingForSwordSwing: bool = false
+
+@onready var inventory = $"../../../InventoryRoot/Inventory"
+
+var inventoryPower: int
 
 func _ready():
 	pass
@@ -17,9 +26,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	actualExtraSpeed = lerp(actualExtraSpeed, targetExtraSpeed, extraSpeedAcceleration * delta)
-	worldSpeed = basicWorldSpeed + actualExtraSpeed
+	if currentHealth > 0:
+		worldSpeed = basicWorldSpeed + actualExtraSpeed + difficulty
+	else:
+		worldSpeed = 0
 	global_position.x += (worldSpeed) * delta
 	ItemProcess(delta)
+	difficulty += 1.5 * delta
 
 func _input(event):
 	if itemInUse != null:
@@ -30,7 +43,8 @@ func _input(event):
 				if event.is_action_released("left_click"):
 					if bowDrawn:
 						if $SpineSprite/BowRay.is_colliding():
-							$SpineSprite/BowRay.get_collider().get_parent().ReceiveHit(GetInventoryPower())
+							UpdateInventoryPower()
+							$SpineSprite/BowRay.get_collider().get_parent().ReceiveHit(inventoryPower)
 						itemInUse.DegradeItem()
 						spineSprite.SetTargetMode(false)
 						bowDrawn = false
@@ -48,6 +62,17 @@ func _input(event):
 						spineSprite.SetTargetMode(false)
 						spineSprite.PlayWeaponAnimation("weapon/shieldUnequip", false, 4)
 						itemInUse = null
+			"sword":
+				if event.is_action_pressed("left_click"):
+					UpdateInventoryPower()
+					waitingForSwordSwing = true
+					spineSprite.PlayWeaponAnimation("weapon/swordSwing", false, 4)
+					$SwordArea/SwordCollider.disabled = false
+#					itemInUse.DegradeItem()
+				if event.is_action_pressed("right_click"):
+						spineSprite.SetTargetMode(false)
+						spineSprite.PlayWeaponAnimation("weapon/swordUnequip", false, 4)
+						itemInUse = null
 
 func ItemProcess(delta):
 	if itemInUse != null:
@@ -55,18 +80,24 @@ func ItemProcess(delta):
 			"shield":
 				spineSprite.PlayMovementAnimation("movement/shieldRun", true, 1, 0.25, 0.5)
 				SetMoveSpeed(0, 1)
-				spineSprite.SetTargetMode(true)
+				spineSprite.SetTargetMode(false)
 				shieldOut = true
 			"bow":
-				spineSprite.PlayMovementAnimation("movement/groovyWalk", true, 1, 0.25)
+				spineSprite.PlayMovementAnimation("WALK", true, 1, 0.25)
 				SetMoveSpeed(0, 5)
 				spineSprite.SetTargetMode(true)
+				shieldOut = false
+			"sword":
+				spineSprite.PlayMovementAnimation("WALK", true, 1, 0.25)
+				SetMoveSpeed(0, 5)
+				spineSprite.SetTargetMode(false)
 				shieldOut = false
 			_:
 				shieldOut = false
 				ResetMoveSpeed()
 	else:
-		spineSprite.PlayWeaponAnimation("weapon/noWeapon", false, 4)
+		if not waitingForSwordSwing:
+			spineSprite.PlayWeaponAnimation("weapon/noWeapon", false, 4)
 		shieldOut = false
 		ResetMoveSpeed()
 		spineSprite.SetTargetMode(false)
@@ -78,19 +109,19 @@ func UseItem(usedItem):
 			spineSprite.PlayWeaponAnimation("weapon/bowEquip", false, 4)
 		"shield":
 			spineSprite.PlayWeaponAnimation("weapon/shieldEquip", false, 4)
+		"sword":
+			spineSprite.PlayWeaponAnimation("weapon/swordEquip", false, 4)
 		_:
 			print("Item ID not defined in player script")
 
-func GetInventoryPower():
-	var inventory = itemInUse.get_parent()
+func UpdateInventoryPower():
 	var itemPower = float(inventory.itemPower)
 	var maxItemPower = float(inventory.inventorySlots.size())
 	var powerRating: float = itemPower/maxItemPower
-	print(powerRating)
 	if powerRating >= 0.5:
-		return 2
+		inventoryPower = 2
 	else:
-		return 1
+		inventoryPower =  1
 
 func SetMoveSpeed(targetMoveSpeed, acceleration):
 		var initialWorldSpeed = worldSpeed
@@ -98,7 +129,7 @@ func SetMoveSpeed(targetMoveSpeed, acceleration):
 		extraSpeedAcceleration = acceleration
 
 func ResetMoveSpeed():
-	spineSprite.PlayMovementAnimation("movement/groovyWalk", true, 1, 0.25)
+	spineSprite.PlayMovementAnimation("WALK", true, 1, 0.25)
 	targetExtraSpeed = 0
 	extraSpeedAcceleration = 6
 
@@ -113,9 +144,44 @@ func _on_spine_sprite_animation_completed(spine_sprite, animation_state, track_e
 	match track_entry.get_animation().get_name():
 		"weapon/bowDraw":
 			bowDrawn = true
+		"weapon/swordWindup":
+			swordReady = true
+		"weapon/swordSwing":
+			$SwordArea/SwordCollider.disabled = true
+			itemInUse = null
+			waitingForSwordSwing = false
+
+func _on_spine_sprite_animation_interrupted(spine_sprite, animation_state, track_entry):
+	match track_entry.get_animation().get_name():
+		"weapon/bowDraw":
+			bowDrawn = true
+		"weapon/swordWindup":
+			swordReady = true
+		"weapon/swordSwing":
+			$SwordArea/SwordCollider.disabled = true
+			itemInUse = null
+			waitingForSwordSwing = false
 
 func _on_player_hit_area_area_entered(area):
 	if shieldOut:
+		UpdateInventoryPower()
 		$SpineSprite.ReceiveHit(true)
+		if inventoryPower == 2:
+			itemInUse.DegradeItem(1)
+		else:
+			itemInUse.DegradeItem(2)
 	else:
-		$SpineSprite.ReceiveHit(false)
+		currentHealth -= 1
+		if currentHealth <= 0:
+			spineSprite.PlayWeaponAnimation("hit/die", false, 2)
+			$PlayerHitArea/PlayerCollider.disabled = true
+		else:
+			$SpineSprite.ReceiveHit(false)
+
+
+func _on_sword_area_area_entered(area):
+	for i in $SwordArea.get_overlapping_areas():
+		print(i.get_parent().name)
+		i.get_parent().ReceiveHit(inventoryPower)
+
+

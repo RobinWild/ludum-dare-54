@@ -15,13 +15,3 @@ func setAnimations():
 	
 	var hitTrack = get_animation_state().set_animation("empty", true, 2)
 	hitTrack.set_mix_duration(0.5)
-
-func _input(event):
-	if event.is_action_pressed("right_click"):
-		ReceiveHit()
-
-
-func ReceiveHit():
-	var trackEntry = get_animation_state().set_animation("hit/getHit", false, 2)
-	trackEntry.set_mix_duration(0)
-	trackEntry.set_mix_blend(SpineConstant.MixBlend_Add)

@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddutbr7cok8rk"]
+[gd_scene load_steps=6 format=3 uid="uid://ddutbr7cok8rk"]
 
 [ext_resource type="Script" path="res://scripts/item.gd" id="1_66rxs"]
 [ext_resource type="PackedScene" uid="uid://d1ij3la6jj4na" path="res://scenes/entities/inventory/tile_collider_clickable.tscn" id="2_ny4dw"]
 [ext_resource type="Texture2D" uid="uid://2js5626lun7k" path="res://assets/textures/items/item-shield.png" id="3_ag8up"]
+[ext_resource type="Texture2D" uid="uid://druaor57d13vg" path="res://assets/textures/items/item-shield-degraded.png" id="4_k5hpe"]
+[ext_resource type="Texture2D" uid="uid://bc4fj2s5sfikx" path="res://assets/textures/items/item-shield-selected.png" id="5_1h1ds"]
 
 [node name="Shield" type="Node2D"]
 z_index = 6
 script = ExtResource("1_66rxs")
 itemId = "shield"
+itemDurability = 4
 
 [node name="Tile4" parent="." instance=ExtResource("2_ny4dw")]
 position = Vector2(-50, -50)
@@ -24,3 +27,11 @@ position = Vector2(50, -50)
 position = Vector2(1, 2)
 scale = Vector2(0.851852, 0.851852)
 texture = ExtResource("3_ag8up")
+
+[node name="DegradedSprite" type="Sprite2D" parent="ItemSprite"]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("4_k5hpe")
+
+[node name="SelectedSprite" type="Sprite2D" parent="ItemSprite"]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("5_1h1ds")

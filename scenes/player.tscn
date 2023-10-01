@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwy086fn6l1tn"]
+[gd_scene load_steps=7 format=3 uid="uid://dwy086fn6l1tn"]
 
 [ext_resource type="SpineSkeletonDataResource" uid="uid://dwfs1vlbkj2qe" path="res://assets/spine/player/player_data.tres" id="1_bqh4g"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_yoij4"]
@@ -11,6 +11,7 @@ var moveTrack: SpineTrackEntry
 var targetTrack: SpineTrackEntry
 var weaponTrack: SpineTrackEntry
 var equippedBow: bool = false
+var worldSpeed
 
 @onready var ikBone: SpineBoneNode = $targetIk
 var isTargetting: bool = false
@@ -21,12 +22,17 @@ func _ready():
 func _process(delta):
 	ikBone.global_position = get_viewport().get_mouse_position()
 	get_skeleton().set_to_setup_pose()
-	var worldSpeed = $\"..\".worldSpeed / 100
-	worldSpeed = clamp(worldSpeed, 0.5, 10)
-	moveTrack.set_time_scale(1.7 * worldSpeed)
+	worldSpeed = $\"..\".worldSpeed / 100
+	worldSpeed = clamp(worldSpeed, 0 , 2.7)
+	if worldSpeed == 0:
+		moveTrack.set_time_scale(1)
+	else:
+		moveTrack.set_time_scale(1.7 * worldSpeed)
 
 func setAnimations():
-	moveTrack = get_animation_state().set_animation(\"movement/groovyWalk\", true, 1)
+	print (worldSpeed)
+	moveTrack = get_animation_state().set_animation(\"movement/bobIdle\", true, 1)
+#	moveTrack = get_animation_state().set_animation(\"movement/groovyWalk\", true, 1)
 	
 	var hitTrack = get_animation_state().set_animation(\"empty\", true, 2)
 	
@@ -35,7 +41,11 @@ func setAnimations():
 	weaponTrack = get_animation_state().set_animation(\"weapon/noWeapon\", true, 4)
 
 func ReceiveHit(shielded = false):
-	var trackEntry = get_animation_state().set_animation(\"hit/getHitShield\", false, 2)
+	var trackEntry
+	if shielded:
+		trackEntry = get_animation_state().set_animation(\"hit/getHitShield\", false, 5)
+	else:
+		trackEntry = get_animation_state().set_animation(\"hit/getHit\", false, 5)
 	trackEntry.set_mix_duration(0)
 	trackEntry.set_mix_blend(SpineConstant.MixBlend_Add)
 
@@ -62,10 +72,19 @@ func SetTargetMode(modeOn):
 
 func PlayWeaponAnimation(animationName, loop, trackIndex, mixTime = 0):
 	if not weaponTrack.get_animation().get_name() == animationName:
+		if animationName == \"weapon/swordSwing\":
+			$\"..\".itemInUse.DegradeItem()
 		weaponTrack = get_animation_state().set_animation(animationName, loop, trackIndex)
 		weaponTrack.set_mix_duration(mixTime)
 
 func PlayMovementAnimation(animationName, loop, trackIndex, mixTime = 0, alpha = null):
+	if $\"..\".currentHealth <= 0:
+		animationName = \"empty\"
+	elif animationName == \"WALK\":
+		if worldSpeed == 0:
+			animationName =\"movement/bobIdle\"
+		else:
+			animationName = \"movement/groovyWalk\"
 	if not moveTrack.get_animation().get_name() == animationName:
 		moveTrack = get_animation_state().set_animation(animationName, loop, trackIndex)
 		moveTrack.set_mix_duration(mixTime)
@@ -76,9 +95,12 @@ func PlayMovementAnimation(animationName, loop, trackIndex, mixTime = 0, alpha =
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1mib"]
 size = Vector2(245.5, 244)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pm8va"]
+radius = 200.003
+
 [node name="Player" type="Node2D"]
 script = ExtResource("1_yoij4")
-basicWorldSpeed = 200
+basicWorldSpeed = 0
 
 [node name="SpineSprite" type="SpineSprite" parent="."]
 skeleton_data_res = ExtResource("1_bqh4g")
@@ -113,5 +135,16 @@ collision_mask = 512
 position = Vector2(-32.25, -113)
 shape = SubResource("RectangleShape2D_y1mib")
 
+[node name="SwordArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1114112
+
+[node name="SwordCollider" type="CollisionShape2D" parent="SwordArea"]
+position = Vector2(89, -19)
+shape = SubResource("CircleShape2D_pm8va")
+disabled = true
+
 [connection signal="animation_completed" from="SpineSprite" to="." method="_on_spine_sprite_animation_completed"]
+[connection signal="animation_interrupted" from="SpineSprite" to="." method="_on_spine_sprite_animation_interrupted"]
 [connection signal="area_entered" from="PlayerHitArea" to="." method="_on_player_hit_area_area_entered"]
+[connection signal="area_entered" from="SwordArea" to="." method="_on_sword_area_area_entered"]

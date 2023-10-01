@@ -1,7 +1,7 @@
 [gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://ct8oujxabgup6"]
 
-[ext_resource type="SpineAtlasResource" uid="uid://ccige5bdjguto" path="res://assets/spine/skeleton_1/skeleton-1.atlas" id="1_viebl"]
-[ext_resource type="SpineSkeletonFileResource" uid="uid://dx2q0w4cnoyfp" path="res://assets/spine/skeleton_1/skeleton-1.skel" id="2_ld6a4"]
+[ext_resource type="SpineAtlasResource" uid="uid://c3qtpiuqp22rt" path="res://assets/spine/skeleton_1/skeleton-1.atlas" id="1_viebl"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://d4dneb3gfm0a0" path="res://assets/spine/skeleton_1/skeleton-1.skel" id="2_ld6a4"]
 
 [resource]
 atlas_res = ExtResource("1_viebl")

@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://bhapmyrwh15lr"
+path="res://.godot/imported/pot.skel-91054622a78e31621639f7764beca0e8.spskel"
+
+[deps]
+
+source_file="res://assets/spine/pot/pot.skel"
+dest_files=["res://.godot/imported/pot.skel-91054622a78e31621639f7764beca0e8.spskel"]
+
+[params]
+

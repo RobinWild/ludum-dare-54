@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://keb65tsc4k56"]
+[gd_scene load_steps=14 format=3 uid="uid://keb65tsc4k56"]
 
 [ext_resource type="Script" path="res://scripts/world_object.gd" id="1_ubkah"]
 [ext_resource type="Texture2D" uid="uid://d1d0sbwq0bk2k" path="res://assets/textures/world/decoration/decoration-1.png" id="2_h15u4"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://b8b6528hwlq4k" path="res://assets/textures/world/decoration/decoration-5.png" id="10_kcv8t"]
 [ext_resource type="Texture2D" uid="uid://cykq5qmfxw35e" path="res://assets/textures/world/decoration/decoration-3.png" id="11_mam04"]
 [ext_resource type="Texture2D" uid="uid://d18edtwbo1pbd" path="res://assets/textures/world/decoration/decoration-20.png" id="12_focw2"]
-[ext_resource type="PackedScene" uid="uid://djahtnm765ubg" path="res://scenes/entities/skeleton_1.tscn" id="13_fsfpv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pw0qo"]
 size = Vector2(436, 1509)
@@ -98,6 +97,3 @@ texture = ExtResource("3_lywyv")
 z_index = 7
 position = Vector2(-235.5, 73.5847)
 texture = ExtResource("12_focw2")
-
-[node name="Enemy" parent="." instance=ExtResource("13_fsfpv")]
-position = Vector2(-144, 19)

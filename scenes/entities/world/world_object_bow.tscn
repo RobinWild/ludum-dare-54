@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cxhylbn1dluq5"]
+[gd_scene load_steps=11 format=3 uid="uid://cxhylbn1dluq5"]
 
 [ext_resource type="Script" path="res://scripts/world_object.gd" id="1_ik2p7"]
 [ext_resource type="Texture2D" uid="uid://c1gfgw7uowct8" path="res://assets/textures/world/decoration/decoration-2.png" id="2_gf3md"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://pus8wyhwaqfa" path="res://assets/textures/world/decoration/decoration-7.png" id="7_784wr"]
 [ext_resource type="Texture2D" uid="uid://b8b6528hwlq4k" path="res://assets/textures/world/decoration/decoration-5.png" id="8_yakpr"]
 [ext_resource type="Texture2D" uid="uid://d1d0sbwq0bk2k" path="res://assets/textures/world/decoration/decoration-1.png" id="9_rddvi"]
-[ext_resource type="PackedScene" uid="uid://bxugw3ljvc7gl" path="res://scenes/entities/items/bow.tscn" id="10_48she"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pw0qo"]
 size = Vector2(704, 1509)
@@ -113,6 +112,3 @@ texture = ExtResource("2_gf3md")
 [node name="Decoration-1" type="Sprite2D" parent="."]
 position = Vector2(-587, -18)
 texture = ExtResource("9_rddvi")
-
-[node name="Bow" parent="." instance=ExtResource("10_48she")]
-position = Vector2(-402, -13)

@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bb8jfdu6lbkqo"]
+
+[ext_resource type="Texture2D" uid="uid://6ijprru5m426" path="res://assets/textures/inventory/inventory-slot.png" id="1_kyob8"]
+[ext_resource type="Script" path="res://scenes/entities/inventory/purse.gd" id="2_ick2e"]
+[ext_resource type="FontFile" uid="uid://b887x2t4ygy6d" path="res://assets/fonts/Aliens Among Us.ttf" id="3_1qirf"]
+[ext_resource type="Texture2D" uid="uid://b5j2ekg4rgmfl" path="res://assets/textures/inventory/coin-grey.png" id="4_rohmg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xvnr1"]
+radius = 30.0
+
+[node name="InventorySlot" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(50, 50)
+texture = ExtResource("1_kyob8")
+
+[node name="PurseArea" type="Area2D" parent="."]
+position = Vector2(50, 50)
+collision_mask = 4
+script = ExtResource("2_ick2e")
+
+[node name="PurseCollider" type="CollisionShape2D" parent="PurseArea"]
+shape = SubResource("CircleShape2D_xvnr1")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -139.0
+offset_top = -41.0
+offset_right = 237.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_1qirf")
+theme_override_font_sizes/font_size = 35
+text = "$$$"
+horizontal_alignment = 1
+
+[node name="Coin-grey" type="Sprite2D" parent="."]
+position = Vector2(49, 50)
+scale = Vector2(0.702703, 0.702703)
+texture = ExtResource("4_rohmg")

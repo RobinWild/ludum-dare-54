@@ -59,3 +59,9 @@ func ToggleMiniMenu():
 func _input(event):
 	if event.is_action_pressed("menu"):
 		ToggleMiniMenu()
+
+func ShowHowToPlay():
+	$MenuMain.current_animation = "show_how_to_play"
+	
+func HideHowToPlay():
+	$MenuMain.current_animation = "hide_how_to_play"

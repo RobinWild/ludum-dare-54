@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://dtrrsyhnetohp"
+path="res://.godot/imported/pot.atlas-65eef60e1698815e741f98dc1e72267c.spatlas"
+
+[deps]
+
+source_file="res://assets/spine/pot/pot.atlas"
+dest_files=["res://.godot/imported/pot.atlas-65eef60e1698815e741f98dc1e72267c.spatlas"]
+
+[params]
+
+normal_map_prefix="n"

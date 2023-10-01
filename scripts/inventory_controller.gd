@@ -7,6 +7,7 @@ extends Node2D
 var inventorySlots = []
 var items = []
 var itemPower: int
+@export var superChargeColour: Color
 
 func _ready():
 	CreateInventoryGrid()
@@ -45,4 +46,10 @@ func RemoveItem(removedItem):
 		UpdateLabel()
 
 func UpdateLabel():
-	$Label.text = str("Power ", itemPower)
+	$Label.text = str(itemPower, " / ", inventorySlots.size())
+	if itemPower >= inventorySlots.size()/2:
+		print(Color(255, 101, 40, 1))
+		$Label.add_theme_color_override("font_color", superChargeColour)
+	else:
+		$Label.add_theme_color_override("font_color", Color(0, 0, 0, 1))
+		
