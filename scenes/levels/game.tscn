@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://coim4uydgtsj"]
+[gd_scene load_steps=18 format=3 uid="uid://coim4uydgtsj"]
 
 [ext_resource type="Script" path="res://scripts/item_move_handler.gd" id="1_hm5qu"]
 [ext_resource type="PackedScene" uid="uid://x04r4uox0nka" path="res://scenes/entities/inventory/inventory.tscn" id="1_md78j"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://btxouksk2x1qe" path="res://scenes/entities/world/world_object3.tscn" id="6_470ko"]
 [ext_resource type="PackedScene" uid="uid://cxhylbn1dluq5" path="res://scenes/entities/world/world_object_bow.tscn" id="7_c53qv"]
 [ext_resource type="PackedScene" uid="uid://dudm0jgkwh7eg" path="res://scenes/entities/world/world_object_shield.tscn" id="8_a8rfb"]
+[ext_resource type="PackedScene" uid="uid://bxugw3ljvc7gl" path="res://scenes/entities/items/bow.tscn" id="11_ds01u"]
+[ext_resource type="PackedScene" uid="uid://ddutbr7cok8rk" path="res://scenes/entities/items/shield.tscn" id="11_rv77p"]
+[ext_resource type="PackedScene" uid="uid://djahtnm765ubg" path="res://scenes/entities/skeleton_1.tscn" id="12_84jdq"]
 
 [sub_resource type="Animation" id="Animation_g6yna"]
 length = 0.001
@@ -62,7 +65,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0.5, 3),
 "transitions": PackedFloat32Array(0.297302, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-1280, 0)]
+"values": [Vector2(0, 0), Vector2(-1436, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f8p01"]
@@ -114,11 +117,20 @@ collide_with_areas = true
 [node name="WorldRoot" type="Node2D" parent="."]
 
 [node name="World" type="Node2D" parent="WorldRoot"]
-position = Vector2(1257, 0)
+position = Vector2(1199, 0)
 script = ExtResource("5_uqjh8")
-worldSpeed = 150.0
 decorationScenes = Array[PackedScene]([ExtResource("5_wdgfo"), ExtResource("6_470ko"), ExtResource("4_on2l0"), ExtResource("7_c53qv"), ExtResource("8_a8rfb")])
 
 [node name="Player" parent="WorldRoot/World" instance=ExtResource("5_y51av")]
+process_priority = 1
 z_index = 5
-position = Vector2(934, 900)
+position = Vector2(1036, 900)
+
+[node name="Enemy" parent="WorldRoot/World" instance=ExtResource("12_84jdq")]
+position = Vector2(2175, 894)
+
+[node name="Shield" parent="." instance=ExtResource("11_rv77p")]
+position = Vector2(1223, 371)
+
+[node name="Bow" parent="." instance=ExtResource("11_ds01u")]
+position = Vector2(1244, 618)

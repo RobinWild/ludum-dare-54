@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var length: float = $WorldObjectCollider.shape.extents.x * 2
-var parallaxScalar: float = 2
+var parallaxScalar: float = 0
 
 var childSprites = []
 

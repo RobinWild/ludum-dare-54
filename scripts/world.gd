@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var worldSpeed: float = 100
+@onready var worldSpeed: float
 @export var decorationScenes:Array[PackedScene]
 
 func _ready():
@@ -8,6 +8,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
+	worldSpeed = $Player.worldSpeed
 	global_position.x += -worldSpeed * delta
 
 func _physics_process(delta):

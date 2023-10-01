@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var itemId: String
+@export var itemDurability: int = 2
 var snapColliders = []
 var itemColliders = []
 var currentPos: Vector2 = Vector2(1920,1080)
@@ -51,3 +53,11 @@ func MoveSprite(delta):
 	currentPos = lerp(currentPos, targetPos, 30 * delta)
 	
 	$ItemSprite.global_position = currentPos
+
+func DegradeItem():
+	itemDurability -= 1
+	if itemDurability == 1:
+		$ItemSprite/DegradedSprite.set_modulate(Color(1,1,1,1))
+	if itemDurability <= 0:
+		$"..".RemoveItem(self)
+		queue_free()

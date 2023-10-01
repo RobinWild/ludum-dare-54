@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://djahtnm765ubg"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_q8782"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://ct8oujxabgup6" path="res://assets/spine/skeleton_1/skeleton_data.tres" id="2_7lqme"]
+[ext_resource type="Script" path="res://scripts/skeleton_spine.gd" id="3_5bbki"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sitlj"]
+size = Vector2(289.5, 474)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mjcty"]
+size = Vector2(178, 396)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rtxlt"]
+size = Vector2(152, 165)
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_q8782")
+health = 2
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+z_index = 4
+scale = Vector2(-1, 1)
+skeleton_data_res = ExtResource("2_7lqme")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource("3_5bbki")
+
+[node name="StartAttackArea" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 256
+
+[node name="StartAttackCollider" type="CollisionShape2D" parent="StartAttackArea"]
+position = Vector2(-160.5, -174)
+shape = SubResource("RectangleShape2D_sitlj")
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 256
+
+[node name="AttackCollider" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(-79, -139)
+shape = SubResource("RectangleShape2D_mjcty")
+
+[node name="EnemyArea" type="Area2D" parent="."]
+modulate = Color(0.258824, 0, 0.14902, 1)
+collision_layer = 65536
+collision_mask = 0
+
+[node name="EnemyCollider" type="CollisionShape2D" parent="EnemyArea"]
+position = Vector2(-12, -76.5)
+shape = SubResource("RectangleShape2D_rtxlt")
+
+[connection signal="area_entered" from="StartAttackArea" to="." method="_on_start_attack_area_area_entered"]
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

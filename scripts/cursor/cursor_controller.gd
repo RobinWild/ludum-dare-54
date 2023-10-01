@@ -20,7 +20,7 @@ func _ready():
 	scale = Vector2.ONE * defaultScale
 
 func _process(delta):
-	setPlayerScale()
+#	setPlayerScale()
 	debugVisibility()
 	updatePointerPosition()
 	setIkTargetPosition()

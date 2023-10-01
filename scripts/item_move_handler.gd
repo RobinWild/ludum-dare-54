@@ -48,17 +48,23 @@ func _input(event):
 	
 	if event.is_action_released("left_click"):
 		if itemBeingMoved != null:
-			if itemBeingMoved.CanSnap() and not itemBeingMoved.IsCollidingWithItem():
+			if itemBeingMoved.CanSnap() and not itemBeingMoved.IsCollidingWithItem(): # snap to inventory
 				itemBeingMoved.isInInventory = true
 				itemBeingMoved.reparent($"../InventoryRoot/Inventory")
 				itemBeingMoved.position.x = round(itemBeingMoved.position.x / 100) * 100
 				itemBeingMoved.position.y = round(itemBeingMoved.position.y / 100) * 100
 				$"../InventoryRoot/Inventory".AddItem(itemBeingMoved)
 				itemBeingMoved = null
-			elif not CheckForDeleteCollisions() and itemBeingMoved.isInInventory:
+			elif not CheckForDeleteCollisions() and itemBeingMoved.isInInventory: # delete object
 				$"../InventoryRoot/Inventory".RemoveItem(itemBeingMoved)
 				itemBeingMoved.queue_free()
 				itemBeingMoved = null
 			else:
-				itemBeingMoved.position = itemOriginalPos
+				itemBeingMoved.position = itemOriginalPos # move back to original position
 				itemBeingMoved = null
+	
+	if event.is_action_pressed("right_click") and itemBeingMoved == null:
+		if itemResult.size() > 0:
+			var usedItem = itemResult[0].collider.get_parent().get_parent()
+			if usedItem.isInInventory:
+				$"../WorldRoot/World/Player".UseItem(usedItem)

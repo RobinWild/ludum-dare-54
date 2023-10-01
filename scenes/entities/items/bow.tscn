@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxugw3ljvc7gl"]
+[gd_scene load_steps=5 format=3 uid="uid://bxugw3ljvc7gl"]
 
 [ext_resource type="Script" path="res://scripts/item.gd" id="1_klaxo"]
 [ext_resource type="PackedScene" uid="uid://d1ij3la6jj4na" path="res://scenes/entities/inventory/tile_collider_clickable.tscn" id="2_0k3uq"]
 [ext_resource type="Texture2D" uid="uid://cj07xvjp0a8dx" path="res://assets/textures/items/item-bow.png" id="2_jmlag"]
+[ext_resource type="Texture2D" uid="uid://cnx8a68m30j3p" path="res://assets/textures/items/item-bow-degraded.png" id="4_sk888"]
 
 [node name="Bow" type="Node2D"]
 z_index = 6
 script = ExtResource("1_klaxo")
+itemId = "bow"
+itemDurability = 3
 
 [node name="Tile4" parent="." instance=ExtResource("2_0k3uq")]
 position = Vector2(-50, -49.9444)
@@ -21,3 +24,7 @@ position = Vector2(50, 50.0556)
 position = Vector2(1, 2)
 scale = Vector2(0.851852, 0.851852)
 texture = ExtResource("2_jmlag")
+
+[node name="DegradedSprite" type="Sprite2D" parent="ItemSprite"]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("4_sk888")

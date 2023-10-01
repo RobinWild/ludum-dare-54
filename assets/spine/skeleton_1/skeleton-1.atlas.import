@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://ccige5bdjguto"
+path="res://.godot/imported/skeleton-1.atlas-1d6f05d78dbf0013eb97eb46652d89eb.spatlas"
+
+[deps]
+
+source_file="res://assets/spine/skeleton_1/skeleton-1.atlas"
+dest_files=["res://.godot/imported/skeleton-1.atlas-1d6f05d78dbf0013eb97eb46652d89eb.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
