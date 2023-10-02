@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://biukrtneh1jlv"]
+[gd_scene load_steps=43 format=3 uid="uid://biukrtneh1jlv"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_47yca"]
 [ext_resource type="Texture2D" uid="uid://bp63r0qdaoagx" path="res://assets/textures/256square.png" id="2_vtb0o"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dfa0q2vkso8pb" path="res://assets/textures/main_menu/start/start-press.png" id="10_y2xr5"]
 [ext_resource type="Texture2D" uid="uid://4yfkmobk4ey6" path="res://assets/textures/main_menu/start/start-hover.png" id="11_xumbs"]
 [ext_resource type="Texture2D" uid="uid://bdum5ysibjity" path="res://assets/textures/main_menu/start/audio-slider.png" id="14_7gbwn"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://bfo5eywcanli1" path="res://assets/spine/logo/logo_data.tres" id="14_an4to"]
 [ext_resource type="Texture2D" uid="uid://d2cpx8w6msrth" path="res://assets/textures/main_menu/start/audio-icon.png" id="14_bg5ai"]
 [ext_resource type="Script" path="res://scripts/volume_slider.gd" id="15_3yf8k"]
 [ext_resource type="AudioStream" uid="uid://kh5wvx1j5dw2" path="res://assets/audio/cursor/click-on.wav" id="16_nj36g"]
@@ -129,7 +130,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(534, 1382)]
+"values": [Vector2(534, 1564)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -204,7 +205,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(0.287174, 2.92817),
 "update": 0,
-"values": [Vector2(610, 1420), Vector2(540, 492)]
+"values": [Vector2(610, 1613), Vector2(608, 492)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -323,6 +324,7 @@ scale = Vector2(7.6124, 4.62016)
 texture = ExtResource("2_vtb0o")
 
 [node name="MenuButton" type="TextureButton" parent="."]
+z_index = 11
 offset_left = 1605.0
 offset_top = 13.0
 offset_right = 2068.0
@@ -370,7 +372,17 @@ texture_hover = ExtResource("11_xumbs")
 
 [node name="Player" parent="MenuMain/StartButton" instance=ExtResource("22_fb2sn")]
 z_index = 100
-position = Vector2(716, 274)
+position = Vector2(634, 37)
+scale = Vector2(0.751332, 0.751332)
+
+[node name="Bag-of-clicks-logo" type="SpineSprite" parent="MenuMain/StartButton"]
+z_index = 11
+position = Vector2(350, -208)
+skeleton_data_res = ExtResource("14_an4to")
+preview_skin = "Default"
+preview_animation = "animation"
+preview_frame = false
+preview_time = 0.0
 
 [node name="Robbobin" type="Node2D" parent="MenuMain"]
 z_index = 10
@@ -441,7 +453,7 @@ volume_db = 21.672
 [node name="MenuMini" type="CanvasGroup" parent="."]
 process_mode = 3
 visible = false
-z_index = 10
+z_index = 11
 
 [node name="Dimmer" type="Sprite2D" parent="MenuMini"]
 modulate = Color(0, 0, 0, 0.45098)

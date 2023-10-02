@@ -19,7 +19,12 @@ func ReceiveHit(damage = 1):
 	if not dead:
 		$SpineSprite.ReceiveHit()
 		health -= damage
+		var randomNumber = randi_range(1,6)
+		var randomString = str("res://assets/audio/skeletonhit/SkeletonHit",randomNumber,".wav")
+		$Hit.stream = load(randomString)
+		$Hit.play()
 		if health <= 0:
+			$Smash.play()
 			dead = true
 			InstantiateItem()
 			$SpineSprite.PlayAnimation("other/die", false, 3, 0)

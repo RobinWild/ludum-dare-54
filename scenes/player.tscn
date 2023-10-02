@@ -1,8 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwy086fn6l1tn"]
+[gd_scene load_steps=14 format=3 uid="uid://dwy086fn6l1tn"]
 
 [ext_resource type="SpineSkeletonDataResource" uid="uid://dwfs1vlbkj2qe" path="res://assets/spine/player/player_data.tres" id="1_bqh4g"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_yoij4"]
 [ext_resource type="Script" path="res://scripts/bow_ray.gd" id="3_ieolh"]
+[ext_resource type="AudioStream" uid="uid://csg4fmjfnilym" path="res://assets/audio/footfall/FootfallLeft1.wav" id="4_es6ya"]
+[ext_resource type="AudioStream" uid="uid://bhoidnupygsur" path="res://assets/audio/bow/BowLoose.wav" id="4_fwe6i"]
+[ext_resource type="AudioStream" uid="uid://ceg4np7drwwr4" path="res://assets/audio/bow/BowPickup.wav" id="5_e154e"]
+[ext_resource type="AudioStream" uid="uid://coau1k5rc8jl0" path="res://assets/audio/sword/SwordSwing.wav" id="5_nlrim"]
+[ext_resource type="AudioStream" uid="uid://bxjntx03u2i4l" path="res://assets/audio/footfall/FootfallRight1.wav" id="5_q70i4"]
+[ext_resource type="AudioStream" uid="uid://d3dafo4paorqw" path="res://assets/audio/skeletonhit/ShieldHit.wav" id="6_qxm20"]
+[ext_resource type="AudioStream" uid="uid://dnvrketvhbqx7" path="res://assets/audio/playerhit/PlayerDie.wav" id="7_6p7k8"]
 
 [sub_resource type="GDScript" id="GDScript_qs2bk"]
 script/source = "extends SpineSprite
@@ -12,6 +19,7 @@ var targetTrack: SpineTrackEntry
 var weaponTrack: SpineTrackEntry
 var equippedBow: bool = false
 var worldSpeed
+var left: bool = false
 
 @onready var ikBone: SpineBoneNode = $targetIk
 var isTargetting: bool = false
@@ -90,6 +98,22 @@ func PlayMovementAnimation(animationName, loop, trackIndex, mixTime = 0, alpha =
 		moveTrack.set_mix_duration(mixTime)
 		if alpha != null:
 			moveTrack.set_alpha(alpha)
+
+
+func _OnEvent(spine_sprite, animation_state, track_entry, event):
+	if left:
+		left = false
+		var randomNumber = randi_range(1,6)
+		var randomString = str(\"res://assets/audio/footfall/FootfallLeft\",randomNumber,\".wav\")
+		$FootfallRight.stream = load(randomString)
+		$FootfallLeft.play()
+	else:
+		left = true
+		var randomNumber = randi_range(1,7)
+		var randomString = str(\"res://assets/audio/footfall/FootfallRight\",randomNumber,\".wav\")
+		$FootfallRight.stream = load(randomString)
+		$FootfallRight.play()
+		
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1mib"]
@@ -127,6 +151,14 @@ hit_from_inside = true
 collide_with_areas = true
 script = ExtResource("3_ieolh")
 
+[node name="FootfallLeft" type="AudioStreamPlayer2D" parent="SpineSprite"]
+show_behind_parent = true
+stream = ExtResource("4_es6ya")
+
+[node name="FootfallRight" type="AudioStreamPlayer2D" parent="SpineSprite"]
+show_behind_parent = true
+stream = ExtResource("5_q70i4")
+
 [node name="PlayerHitArea" type="Area2D" parent="."]
 collision_layer = 256
 collision_mask = 512
@@ -144,7 +176,23 @@ position = Vector2(89, -19)
 shape = SubResource("CircleShape2D_pm8va")
 disabled = true
 
+[node name="BowLoose" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_fwe6i")
+
+[node name="SwordSwing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_nlrim")
+
+[node name="PickUpItem" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_e154e")
+
+[node name="HitShield" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_qxm20")
+
+[node name="HitDie" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_6p7k8")
+
 [connection signal="animation_completed" from="SpineSprite" to="." method="_on_spine_sprite_animation_completed"]
+[connection signal="animation_event" from="SpineSprite" to="SpineSprite" method="_OnEvent"]
 [connection signal="animation_interrupted" from="SpineSprite" to="." method="_on_spine_sprite_animation_interrupted"]
 [connection signal="area_entered" from="PlayerHitArea" to="." method="_on_player_hit_area_area_entered"]
 [connection signal="area_entered" from="SwordArea" to="." method="_on_sword_area_area_entered"]

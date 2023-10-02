@@ -27,6 +27,9 @@ func _process(delta):
 		$ItemSprite/SelectedSprite.set_modulate(Color(1,1,1,1))
 	else:
 		$ItemSprite/SelectedSprite.set_modulate(Color(1,1,1,0))
+		
+	if global_position.x < -500:
+		queue_free()
 
 func _physics_process(delta):
 	pass
@@ -70,6 +73,7 @@ func DegradeItem(damage: int = 1):
 	itemDurability -= damage
 	if itemDurability == damage:
 		$ItemSprite/DegradedSprite.set_modulate(Color(1,1,1,1))
+		$ItemSprite.set_self_modulate(Color(1,1,1,0))
 	if itemDurability <= 0:
 		$"..".RemoveItem(self)
 		queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://djahtnm765ubg"]
+[gd_scene load_steps=12 format=3 uid="uid://djahtnm765ubg"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_q8782"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://ct8oujxabgup6" path="res://assets/spine/skeleton_1/skeleton_data.tres" id="2_7lqme"]
@@ -6,9 +6,11 @@
 [ext_resource type="Script" path="res://scripts/skeleton_spine.gd" id="3_5bbki"]
 [ext_resource type="PackedScene" uid="uid://dbwl8ru0r4lcl" path="res://scenes/entities/items/sword.tscn" id="3_mem65"]
 [ext_resource type="PackedScene" uid="uid://bxugw3ljvc7gl" path="res://scenes/entities/items/bow.tscn" id="4_3376r"]
+[ext_resource type="AudioStream" uid="uid://dsfwp6hr2pbdo" path="res://assets/audio/pot/PotSmash.wav" id="7_keoxi"]
+[ext_resource type="AudioStream" uid="uid://fxiec7x8kbdt" path="res://assets/audio/skeletonhit/SkeletonHit1.wav" id="7_w6f23"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sitlj"]
-size = Vector2(289.5, 474)
+size = Vector2(406.25, 474)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mjcty"]
 size = Vector2(139, 396)
@@ -37,7 +39,7 @@ collision_layer = 1024
 collision_mask = 256
 
 [node name="StartAttackCollider" type="CollisionShape2D" parent="StartAttackArea"]
-position = Vector2(-160.5, -174)
+position = Vector2(-218.875, -174)
 shape = SubResource("RectangleShape2D_sitlj")
 
 [node name="AttackArea" type="Area2D" parent="."]
@@ -56,6 +58,13 @@ collision_mask = 0
 [node name="EnemyCollider" type="CollisionShape2D" parent="EnemyArea"]
 position = Vector2(-12, -76.5)
 shape = SubResource("RectangleShape2D_rtxlt")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_w6f23")
+
+[node name="Smash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_keoxi")
+pitch_scale = 0.65
 
 [connection signal="area_entered" from="StartAttackArea" to="." method="_on_start_attack_area_area_entered"]
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

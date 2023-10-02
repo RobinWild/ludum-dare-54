@@ -35,7 +35,7 @@ func _process(delta):
 	difficulty += 1.5 * delta
 
 func _input(event):
-	if itemInUse != null:
+	if itemInUse != null and not $"../../../ItemMoveHandler".CheckForDeleteCollisions():
 		match itemInUse.itemId:
 			"bow":
 				if event.is_action_pressed("left_click"):
@@ -49,6 +49,7 @@ func _input(event):
 						spineSprite.SetTargetMode(false)
 						bowDrawn = false
 						spineSprite.PlayWeaponAnimation("weapon/bowLoose", false, 4)
+						$BowLoose.play()
 						itemInUse = null
 						
 					else:
@@ -66,6 +67,7 @@ func _input(event):
 				if event.is_action_pressed("left_click"):
 					UpdateInventoryPower()
 					waitingForSwordSwing = true
+					$SwordSwing.play()
 					spineSprite.PlayWeaponAnimation("weapon/swordSwing", false, 4)
 					$SwordArea/SwordCollider.disabled = false
 #					itemInUse.DegradeItem()
@@ -103,16 +105,20 @@ func ItemProcess(delta):
 		spineSprite.SetTargetMode(false)
 
 func UseItem(usedItem):
-	itemInUse = usedItem
-	match usedItem.itemId:
-		"bow":
-			spineSprite.PlayWeaponAnimation("weapon/bowEquip", false, 4)
-		"shield":
-			spineSprite.PlayWeaponAnimation("weapon/shieldEquip", false, 4)
-		"sword":
-			spineSprite.PlayWeaponAnimation("weapon/swordEquip", false, 4)
-		_:
-			print("Item ID not defined in player script")
+	if usedItem != null:
+		itemInUse = usedItem
+		match usedItem.itemId:
+			"bow":
+				spineSprite.PlayWeaponAnimation("weapon/bowEquip", false, 4)
+				$PickUpItem.play()
+			"shield":
+				spineSprite.PlayWeaponAnimation("weapon/shieldEquip", false, 4)
+				$PickUpItem.play()
+			"sword":
+				spineSprite.PlayWeaponAnimation("weapon/swordEquip", false, 4)
+				$PickUpItem.play()
+			_:
+				print("Item ID not defined in player script")
 
 func UpdateInventoryPower():
 	var itemPower = float(inventory.itemPower)
@@ -139,6 +145,7 @@ func UnequipItem():
 	shieldOut = false
 	ResetMoveSpeed()
 	spineSprite.SetTargetMode(false)
+	$"../../../ItemMoveHandler/BowPlace".play()
 
 func _on_spine_sprite_animation_completed(spine_sprite, animation_state, track_entry):
 	match track_entry.get_animation().get_name():
@@ -164,6 +171,7 @@ func _on_spine_sprite_animation_interrupted(spine_sprite, animation_state, track
 
 func _on_player_hit_area_area_entered(area):
 	if shieldOut:
+		$HitShield.play()
 		UpdateInventoryPower()
 		$SpineSprite.ReceiveHit(true)
 		if inventoryPower == 2:
@@ -173,9 +181,12 @@ func _on_player_hit_area_area_entered(area):
 	else:
 		currentHealth -= 1
 		if currentHealth <= 0:
+			$HitDie.play()
+			$"../../../GameOverScreen/GameOverAnimationPlayer".play("game_over")
 			spineSprite.PlayWeaponAnimation("hit/die", false, 2)
 			$PlayerHitArea/PlayerCollider.disabled = true
 		else:
+			$HitDie.play()
 			$SpineSprite.ReceiveHit(false)
 
 

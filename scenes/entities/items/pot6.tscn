@@ -1,0 +1,48 @@
+[gd_scene load_steps=12 format=3 uid="uid://blwc4wgcn7kht"]
+
+[ext_resource type="Script" path="res://scenes/entities/items/pot.gd" id="1_wwf6e"]
+[ext_resource type="PackedScene" uid="uid://bxugw3ljvc7gl" path="res://scenes/entities/items/bow.tscn" id="2_8q7j1"]
+[ext_resource type="PackedScene" uid="uid://ddutbr7cok8rk" path="res://scenes/entities/items/shield.tscn" id="3_gkosn"]
+[ext_resource type="PackedScene" uid="uid://dbwl8ru0r4lcl" path="res://scenes/entities/items/sword.tscn" id="4_yy3yv"]
+[ext_resource type="PackedScene" uid="uid://f3e56gmyhgsm" path="res://scenes/entities/items/coin.tscn" id="5_lik31"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://c038fxaekqmb8" path="res://assets/spine/pot/pot_data.tres" id="6_xcwr5"]
+[ext_resource type="Script" path="res://scripts/pot_spine.gd" id="7_e8pfq"]
+[ext_resource type="Script" path="res://scenes/entities/items/pot_node.gd" id="8_021ch"]
+[ext_resource type="AudioStream" uid="uid://b4wu6twsto8hb" path="res://assets/audio/pot/PotTap1.wav" id="9_j5c5w"]
+[ext_resource type="AudioStream" uid="uid://dsfwp6hr2pbdo" path="res://assets/audio/pot/PotSmash.wav" id="10_6nhby"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3gkk0"]
+radius = 55.0
+height = 156.0
+
+[node name="pot" type="Node2D"]
+script = ExtResource("1_wwf6e")
+possibleLoot = Array[PackedScene]([ExtResource("2_8q7j1"), ExtResource("3_gkosn"), ExtResource("4_yy3yv"), ExtResource("5_lik31"), ExtResource("5_lik31"), ExtResource("5_lik31")])
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+z_index = 4
+scale = Vector2(0.4, 0.4)
+skeleton_data_res = ExtResource("6_xcwr5")
+preview_skin = "pot6"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource("7_e8pfq")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("8_021ch")
+
+[node name="TapArea" type="Area2D" parent="Node2D"]
+collision_layer = 1048578
+collision_mask = 2
+
+[node name="TapCollider" type="CollisionShape2D" parent="Node2D/TapArea"]
+position = Vector2(-7, -60)
+shape = SubResource("CapsuleShape2D_3gkk0")
+
+[node name="Tap" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_j5c5w")
+
+[node name="Smash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_6nhby")
+pitch_scale = 0.75

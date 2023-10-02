@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://81f2qcyakc37"]
+[gd_scene load_steps=12 format=3 uid="uid://81f2qcyakc37"]
 
 [ext_resource type="Script" path="res://scenes/entities/items/pot.gd" id="1_qoe1r"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://c038fxaekqmb8" path="res://assets/spine/pot/pot_data.tres" id="1_wn75y"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dbwl8ru0r4lcl" path="res://scenes/entities/items/sword.tscn" id="4_kc1lh"]
 [ext_resource type="Script" path="res://scenes/entities/items/pot_node.gd" id="4_s00uq"]
 [ext_resource type="PackedScene" uid="uid://f3e56gmyhgsm" path="res://scenes/entities/items/coin.tscn" id="5_hft8o"]
+[ext_resource type="AudioStream" uid="uid://b4wu6twsto8hb" path="res://assets/audio/pot/PotTap1.wav" id="9_r3s4c"]
+[ext_resource type="AudioStream" uid="uid://dsfwp6hr2pbdo" path="res://assets/audio/pot/PotSmash.wav" id="10_drth0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3gkk0"]
 radius = 55.0
@@ -37,3 +39,10 @@ collision_mask = 2
 [node name="TapCollider" type="CollisionShape2D" parent="Node2D/TapArea"]
 position = Vector2(4, -72)
 shape = SubResource("CapsuleShape2D_3gkk0")
+
+[node name="Tap" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_r3s4c")
+
+[node name="Smash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_drth0")
+pitch_scale = 0.89

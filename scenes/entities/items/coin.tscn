@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c7xtsk2h5113w" path="res://assets/textures/items/coin.png" id="3_usjdf"]
 
 [node name="coin" type="Node2D"]
-z_index = 6
+z_index = 11
 script = ExtResource("1_o77w5")
 itemId = "coin"
 itemDurability = 3

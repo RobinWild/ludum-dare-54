@@ -11,6 +11,7 @@ radius = 30.0
 [node name="InventorySlot" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(50, 50)
 texture = ExtResource("1_kyob8")
 
@@ -22,11 +23,14 @@ script = ExtResource("2_ick2e")
 [node name="PurseCollider" type="CollisionShape2D" parent="PurseArea"]
 shape = SubResource("CircleShape2D_xvnr1")
 
+[node name="Jingle" type="AudioStreamPlayer2D" parent="PurseArea"]
+volume_db = 23.366
+
 [node name="Label" type="Label" parent="."]
 offset_left = -139.0
-offset_top = -41.0
+offset_top = -52.0
 offset_right = 237.0
-offset_bottom = 28.0
+offset_bottom = 17.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_1qirf")
 theme_override_font_sizes/font_size = 35
@@ -34,6 +38,6 @@ text = "$$$"
 horizontal_alignment = 1
 
 [node name="Coin-grey" type="Sprite2D" parent="."]
-position = Vector2(49, 50)
+position = Vector2(53, 26)
 scale = Vector2(0.702703, 0.702703)
 texture = ExtResource("4_rohmg")

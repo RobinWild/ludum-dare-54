@@ -52,6 +52,8 @@ func ToggleMiniMenu():
 			miniMenuOpen = false
 			$MenuMini.hide()
 		else:
+			$"Game/WorldRoot".position = Vector2(-1436,0)
+			$"Game/InventoryRoot".position = Vector2(0,0)
 			get_tree().paused = true
 			miniMenuOpen = true
 			$MenuMini.show()
@@ -59,9 +61,3 @@ func ToggleMiniMenu():
 func _input(event):
 	if event.is_action_pressed("menu"):
 		ToggleMiniMenu()
-
-func ShowHowToPlay():
-	$MenuMain.current_animation = "show_how_to_play"
-	
-func HideHowToPlay():
-	$MenuMain.current_animation = "hide_how_to_play"

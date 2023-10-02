@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://1him1g7bk3cy" path="res://assets/textures/items/item-bow-selected.png" id="5_kek1c"]
 
 [node name="Bow" type="Node2D"]
-z_index = 6
+z_index = 11
 script = ExtResource("1_klaxo")
 itemId = "bow"
 itemDurability = 3

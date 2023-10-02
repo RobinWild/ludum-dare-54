@@ -19,3 +19,8 @@ func _physics_process(delta):
 			score += $"../..".itemPower + 1
 			print(score)
 			$"../Label".text = "$" + str(score)
+			
+			var randomNumber = randi_range(1,5)
+			var randomString = str("res://assets/audio/coin/CoinJingle",randomNumber,".wav")
+			$Jingle.stream = load(randomString)
+			$Jingle.play()

@@ -25,5 +25,6 @@ func GetTapped(damage):
 	elif health <= 0 and not dead:
 		dead = true
 		var trackEntry = get_animation_state().set_animation("smash", false, 2)
+		$"../Smash".play()
 		$"..".InstantiateItem()
 		$"../Node2D".queue_free()

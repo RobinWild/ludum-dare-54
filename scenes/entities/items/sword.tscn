@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bmk24kiike6w4" path="res://assets/textures/items/item-sword-selected.png" id="5_lkc5u"]
 
 [node name="sword" type="Node2D"]
-z_index = 6
+z_index = 11
 position = Vector2(-50, -50)
 script = ExtResource("1_tk2hg")
 itemId = "sword"

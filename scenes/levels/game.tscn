@@ -1,9 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://coim4uydgtsj"]
+[gd_scene load_steps=31 format=3 uid="uid://coim4uydgtsj"]
 
 [ext_resource type="Script" path="res://scripts/item_move_handler.gd" id="1_hm5qu"]
 [ext_resource type="PackedScene" uid="uid://x04r4uox0nka" path="res://scenes/entities/inventory/inventory.tscn" id="1_md78j"]
+[ext_resource type="PackedScene" uid="uid://suyfrkt7d04v" path="res://scenes/game_over_screen.tscn" id="1_vife8"]
+[ext_resource type="AudioStream" uid="uid://bcekhmxvprg5w" path="res://assets/audio/coin/CoinPickup1.wav" id="3_0heq5"]
+[ext_resource type="AudioStream" uid="uid://ceg4np7drwwr4" path="res://assets/audio/bow/BowPickup.wav" id="4_icrk5"]
+[ext_resource type="Texture2D" uid="uid://bvi5woqqtt3dh" path="res://assets/textures/inventory/inventory-bg.png" id="4_o7g40"]
 [ext_resource type="PackedScene" uid="uid://b6ibcn67gg73d" path="res://scenes/entities/world/world_object.tscn" id="4_on2l0"]
+[ext_resource type="AudioStream" uid="uid://smioc8ghpnbn" path="res://assets/audio/bow/BowPlace.wav" id="5_n26tf"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="5_uqjh8"]
+[ext_resource type="AudioStream" uid="uid://djk2ma044prjd" path="res://assets/audio/sword/SwordPlace.wav" id="5_vrhu5"]
 [ext_resource type="PackedScene" uid="uid://keb65tsc4k56" path="res://scenes/entities/world/world_object2.tscn" id="5_wdgfo"]
 [ext_resource type="PackedScene" uid="uid://dwy086fn6l1tn" path="res://scenes/player.tscn" id="5_y51av"]
 [ext_resource type="PackedScene" uid="uid://btxouksk2x1qe" path="res://scenes/entities/world/world_object3.tscn" id="6_470ko"]
@@ -11,7 +17,12 @@
 [ext_resource type="PackedScene" uid="uid://dudm0jgkwh7eg" path="res://scenes/entities/world/world_object_shield.tscn" id="8_a8rfb"]
 [ext_resource type="PackedScene" uid="uid://ddutbr7cok8rk" path="res://scenes/entities/items/shield.tscn" id="11_rv77p"]
 [ext_resource type="PackedScene" uid="uid://djahtnm765ubg" path="res://scenes/entities/skeleton_1.tscn" id="12_84jdq"]
+[ext_resource type="PackedScene" uid="uid://c5bs3wwqfyvd1" path="res://scenes/entities/items/pot4.tscn" id="13_bsgjr"]
+[ext_resource type="PackedScene" uid="uid://4u2vwvjnmd5c" path="res://scenes/entities/items/pot2.tscn" id="14_5djks"]
 [ext_resource type="PackedScene" uid="uid://81f2qcyakc37" path="res://scenes/entities/items/pot.tscn" id="14_u8bb8"]
+[ext_resource type="PackedScene" uid="uid://vu62igqk7k7u" path="res://scenes/entities/items/pot5.tscn" id="14_ywf7l"]
+[ext_resource type="PackedScene" uid="uid://blwc4wgcn7kht" path="res://scenes/entities/items/pot6.tscn" id="15_fpbgd"]
+[ext_resource type="PackedScene" uid="uid://cwxd852j7vwin" path="res://scenes/entities/items/pot3.tscn" id="15_xk6au"]
 
 [sub_resource type="Animation" id="Animation_g6yna"]
 length = 0.001
@@ -38,6 +49,46 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldRoot/World/Player:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1036, 900)]
+}
+
+[sub_resource type="Animation" id="Animation_7hlkq"]
+resource_name = "skip_intro"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InventoryRoot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WorldRoot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1436, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_510tp"]
@@ -68,9 +119,38 @@ tracks/1/keys = {
 "values": [Vector2(473, 0), Vector2(-1436, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_3ed7m"]
+resource_name = "game_over"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WorldRoot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(-1436, 0), Vector2(-1436, 930)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WorldRoot/World/Player:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(1036, 900), Vector2(1579, -128)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f8p01"]
 _data = {
 "RESET": SubResource("Animation_g6yna"),
+"game_over": SubResource("Animation_3ed7m"),
+"skip_intro": SubResource("Animation_7hlkq"),
 "start": SubResource("Animation_510tp")
 }
 
@@ -81,6 +161,9 @@ size = Vector2(516, 504)
 
 [node name="Game" type="Node2D"]
 
+[node name="GameOverScreen" parent="." instance=ExtResource("1_vife8")]
+z_index = 9
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "start"
 libraries = {
@@ -88,17 +171,37 @@ libraries = {
 }
 
 [node name="ItemMoveHandler" type="Area2D" parent="."]
+process_priority = -1
 collision_mask = 2
 script = ExtResource("1_hm5qu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemMoveHandler"]
 shape = SubResource("CircleShape2D_ywj2r")
 
+[node name="CoinPickup" type="AudioStreamPlayer2D" parent="ItemMoveHandler"]
+stream = ExtResource("3_0heq5")
+
+[node name="ItemPickup" type="AudioStreamPlayer2D" parent="ItemMoveHandler"]
+stream = ExtResource("4_icrk5")
+
+[node name="BowPlace" type="AudioStreamPlayer2D" parent="ItemMoveHandler"]
+stream = ExtResource("5_n26tf")
+
+[node name="ItemToInventory" type="AudioStreamPlayer2D" parent="ItemMoveHandler"]
+stream = ExtResource("5_vrhu5")
+
 [node name="InventoryRoot" type="Node2D" parent="."]
 
 [node name="Inventory" parent="InventoryRoot" instance=ExtResource("1_md78j")]
+z_index = 10
 position = Vector2(400, 500)
 superChargeColour = Color(0.870588, 0.329412, 0.152941, 1)
+
+[node name="Inventory-bg" type="Sprite2D" parent="InventoryRoot/Inventory"]
+z_index = -5
+position = Vector2(227, 167)
+scale = Vector2(0.522773, 0.522773)
+texture = ExtResource("4_o7g40")
 
 [node name="DeleteArea" type="Area2D" parent="InventoryRoot/Inventory"]
 position = Vector2(193, 177)
@@ -122,36 +225,37 @@ collide_with_areas = true
 position = Vector2(1199, 0)
 script = ExtResource("5_uqjh8")
 decorationScenes = Array[PackedScene]([ExtResource("5_wdgfo"), ExtResource("6_470ko"), ExtResource("4_on2l0"), ExtResource("7_c53qv"), ExtResource("8_a8rfb")])
-potScenes = Array[PackedScene]([ExtResource("14_u8bb8")])
+potScenes = Array[PackedScene]([ExtResource("14_u8bb8"), ExtResource("14_5djks"), ExtResource("15_xk6au"), ExtResource("13_bsgjr"), ExtResource("14_ywf7l"), ExtResource("15_fpbgd")])
 enemyScenes = Array[PackedScene]([ExtResource("12_84jdq")])
+enemySpawnTimerMin = 3.0
+enemySpawnTimerMax = 12.0
 
 [node name="Player" parent="WorldRoot/World" instance=ExtResource("5_y51av")]
-process_priority = 1
 z_index = 5
 position = Vector2(1036, 900)
 basicWorldSpeed = 75
 maxHealth = 3
 
 [node name="Timer" type="Timer" parent="WorldRoot/World"]
-wait_time = 8.0
+wait_time = 2.0
 autostart = true
 
 [node name="Shield" parent="WorldRoot/World" instance=ExtResource("11_rv77p")]
-position = Vector2(1738, 829)
+position = Vector2(1800, 839)
 
-[node name="pot" parent="WorldRoot/World" instance=ExtResource("14_u8bb8")]
-position = Vector2(2034, 911)
+[node name="pot" parent="WorldRoot/World" instance=ExtResource("14_5djks")]
+position = Vector2(2068, 890)
 
-[node name="pot2" parent="WorldRoot/World" instance=ExtResource("14_u8bb8")]
-position = Vector2(1564, 905)
+[node name="pot2" parent="WorldRoot/World" instance=ExtResource("15_xk6au")]
+position = Vector2(2150, 906)
 
-[node name="pot3" parent="WorldRoot/World" instance=ExtResource("14_u8bb8")]
-position = Vector2(2217, 920)
+[node name="pot3" parent="WorldRoot/World" instance=ExtResource("13_bsgjr")]
+position = Vector2(2294, 884)
 
-[node name="pot4" parent="WorldRoot/World" instance=ExtResource("14_u8bb8")]
-position = Vector2(2304, 960)
+[node name="pot4" parent="WorldRoot/World" instance=ExtResource("14_ywf7l")]
+position = Vector2(2468, 888)
 
-[node name="pot5" parent="WorldRoot/World" instance=ExtResource("14_u8bb8")]
-position = Vector2(2431, 908)
+[node name="pot5" parent="WorldRoot/World" instance=ExtResource("15_fpbgd")]
+position = Vector2(2542, 910)
 
 [connection signal="timeout" from="WorldRoot/World/Timer" to="WorldRoot/World" method="_on_timer_timeout"]

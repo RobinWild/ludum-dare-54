@@ -1,0 +1,16 @@
+logo.png
+size:706,350
+filter:Linear,Linear
+assets/logo/bag-of-clicks-logo
+bounds:2,2,518,346
+offsets:1,0,519,346
+assets/logo/cursor1
+bounds:522,155,193,143
+rotate:90
+assets/logo/cursor2
+bounds:522,30,123,90
+offsets:1,0,124,90
+rotate:90
+assets/logo/cursor3
+bounds:614,59,94,90
+rotate:90

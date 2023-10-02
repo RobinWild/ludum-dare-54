@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://72kkv6cqcgg5"
+path="res://.godot/imported/logo.atlas-06b63e4976b62dc471254190005ce30b.spatlas"
+
+[deps]
+
+source_file="res://assets/spine/logo/logo.atlas"
+dest_files=["res://.godot/imported/logo.atlas-06b63e4976b62dc471254190005ce30b.spatlas"]
+
+[params]
+
+normal_map_prefix="n"

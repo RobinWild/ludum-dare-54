@@ -14,9 +14,14 @@ func _process(delta):
 	pass
 
 func GetTapped():
+	var randomNumber = randi_range(1, 7)
+	var randomString = str("res://assets/audio/pot/PotTap",randomNumber,".wav")
+	$Tap.stream = load(randomString) 
+	$Tap.play()
 	$SpineSprite.GetTapped(1)
 
 func ReceiveHit(damage):
+	$Tap.play()
 	$SpineSprite.GetTapped()
 
 func InstantiateItem():

@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bc4fj2s5sfikx" path="res://assets/textures/items/item-shield-selected.png" id="5_1h1ds"]
 
 [node name="Shield" type="Node2D"]
-z_index = 6
+z_index = 11
 script = ExtResource("1_66rxs")
 itemId = "shield"
 itemDurability = 4

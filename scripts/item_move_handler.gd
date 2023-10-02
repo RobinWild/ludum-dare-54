@@ -29,6 +29,10 @@ func CheckForItemCursorCollisions():
 	physicsPoint.collide_with_areas = true
 	physicsPoint.collision_mask = 2
 	itemResult = space_state.intersect_point(physicsPoint, 1)
+	if itemResult.is_empty():
+		return true
+	else:
+		return false
 	
 func CheckForDeleteCollisions():
 	deletePoint = get_viewport().get_mouse_position()
@@ -59,12 +63,30 @@ func _input(event):
 				itemBeingMoved = itemResult[0].collider.get_parent().get_parent()
 				itemOriginalPos = itemBeingMoved.position
 				itemMoveOffset = get_viewport().get_mouse_position() - itemBeingMoved.global_position
+				if itemBeingMoved.itemId == "coin":
+					var randomNumber = randi_range(1, 4)
+					var randomString = str("res://assets/audio/coin/CoinPickup",randomNumber,".wav")
+					$CoinPickup.stream = load(randomString) 
+					$CoinPickup.play()
+				else:
+					$ItemPickup.play()
 			else:
 				itemResult[0].collider.get_parent().get_parent().GetTapped()
 	
 	if event.is_action_released("left_click"):
 		if itemBeingMoved != null:
 			if itemBeingMoved.CanSnap() and not itemBeingMoved.IsCollidingWithItem(): # snap to inventory
+				if itemBeingMoved.itemId == "coin":
+					var randomNumber = randi_range(1, 4)
+					var randomString = str("res://assets/audio/coin/CoinPickup",randomNumber,".wav")
+					$CoinPickup.stream = load(randomString) 
+					$CoinPickup.play()
+				if itemBeingMoved.itemId == "sword":
+					$ItemToInventory.play()
+				if itemBeingMoved.itemId == "shield":
+					$ItemToInventory.play()
+				if itemBeingMoved.itemId == "bow":
+					$BowPlace.play()
 				itemBeingMoved.isInInventory = true
 				itemBeingMoved.reparent($"../InventoryRoot/Inventory")
 				itemBeingMoved.position.x = round(itemBeingMoved.position.x / 100) * 100
@@ -77,7 +99,12 @@ func _input(event):
 				itemBeingMoved = null
 			elif not CheckForDeleteCollisions() and itemBeingMoved.isInInventory: # delete object
 				$"../InventoryRoot/Inventory".RemoveItem(itemBeingMoved)
-				itemBeingMoved.queue_free()
+#				itemBeingMoved.queue_free()
+				itemBeingMoved.reparent($"../WorldRoot/World")
+				itemBeingMoved.isInUse = false
+				itemBeingMoved.isInInventory = false
+				itemBeingMoved.global_position = $"../WorldRoot/World/Player".global_position
+				$"../WorldRoot/World/Player".UnequipItem()
 				itemBeingMoved = null
 			else:
 				itemBeingMoved.position = itemOriginalPos # move back to original position
